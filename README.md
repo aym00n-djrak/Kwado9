@@ -1,15 +1,47 @@
-# Kwado9
+# KWADO9
 
-Hello ! Pour lancer le projets, il vous faut ! Android studio et nodes.
+## Introduction
 
-Pour lancer le projet:  ```npm i```
-Lancer Metro: ```npx react-native start```
-![image](https://user-images.githubusercontent.com/61629065/203023995-422efe08-7196-4df3-92d1-0bd4d65a9ac3.png)
+Voici notre application mobile
 
-Puis: ```npx react-native run-android```
+## Instructions pour installation
 
-![image](https://user-images.githubusercontent.com/61629065/203024049-a25dda75-67e8-4804-a9b3-203abd375241.png)
+1. [Install Git](https://git-scm.com/downloads)
+
+2. [Install NodeJS](https://nodejs.org/en/download/)
+
+3. Cloner ce dépôt
+
+4. Installer l'application:
+
+```bash
+npm i
+```
+
+## Instructions pour lancer l'application
 
 
-Il faut savoir que android studio prend de la mémoire, il faut au moins 10go de stockage juste pour le téléphone
+1. Lancer l'application
 
+```bash
+npm start
+```
+
+2. Sur votre téléphone installer l'application suivante: 
+- [android](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=fr&gl=US) 
+- [IOS](https://apps.apple.com/fr/app/expo-go/id982107779)
+
+3. Scanner le QR code depuis l'application expo, l'application s'ouvrira
+
+## Auteurs
+
+- Rémy JOVANOVIC
+- Clément LAMBERT
+- Enzo GALLOS
+- Téo MAZEPA
+- Albert MANSOURI-MONFARED
+- Irintsoalhapirah ANDONIAINA
+
+## Mentor
+
+- Gabriel TAPIA
