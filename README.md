@@ -6,9 +6,9 @@ Voici notre application mobile
 
 ## Instructions pour installation
 
-1. [Install Git](https://git-scm.com/downloads)
+1. [Installer Git](https://git-scm.com/downloads)
 
-2. [Install NodeJS](https://nodejs.org/en/download/)
+2. [Installer NodeJS](https://nodejs.org/en/download/)
 
 3. Cloner ce dépôt
 
