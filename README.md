@@ -27,7 +27,8 @@ npm i
 npm start
 ```
 
-2. Sur votre téléphone installer l'application suivante: 
+2. Sur votre téléphone installer l'application suivante
+
 - [android](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=fr&gl=US) 
 - [IOS](https://apps.apple.com/fr/app/expo-go/id982107779)
 
