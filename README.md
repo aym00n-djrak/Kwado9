@@ -12,7 +12,7 @@ Voici notre application mobile
 
 3. Cloner ce dépôt
 
-4. Installer l'application:
+4. Installer l'application
 
 ```bash
 npm i
