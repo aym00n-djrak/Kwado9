@@ -7,9 +7,9 @@ import { Alert } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Rémy App!</Text>
+      <Text>Rémy App! Alberto est passé par là</Text>
       <StatusBar style="auto" />
-      <Button title="Click me" onPress={() => Alert.alert('Button pressed!')} style={styles.button} />
+      <Button title="Vasy appuie" onPress={() => Alert.alert('Tas appuyé!')} style={styles.button} />
     </View>
   );
 }
