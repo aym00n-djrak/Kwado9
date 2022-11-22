@@ -1,20 +1,18 @@
+import * as React from 'react';
+import { StyleSheet, Button, View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    Button,
-    TouchableOpacity,
-} from "react-native";
+import { useState } from 'react';
 
-export default function App() {
+function HomeScreen({ navigation }) {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     return (
+
+
         <View style={styles.container}>
 
             <StatusBar style="auto" />
@@ -51,13 +49,39 @@ export default function App() {
                 <Text style={styles.forgot_button}>Forgot Password?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('UserPage')}>
                 <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
 
+
+
         </View>
-    );
+  );
 }
+
+function User_Menu() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text>UserPage</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="UserPage" component={User_Menu} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
+
 
 const styles = StyleSheet.create({
     container: {
