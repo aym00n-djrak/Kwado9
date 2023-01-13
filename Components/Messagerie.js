@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 
 const Message = ({ message }) => (
-  <View>
+  <View style={{ backgroundColor: 'red', padding: 10, margin: 10, borderRadius: 10, width: 200, alignSelf: 'flex-end' }}>
     <Text>{message}</Text>
   </View>
 );
@@ -24,6 +24,7 @@ const MessageInput = ({ onSend }) => {
         placeholder="Enter a message..."
         onChangeText={text => setText(text)}
         value={text}
+        style={{color : 'black', backgroundColor: 'white', padding: 10, margin: 10, borderRadius: 10, width: 200, alignSelf: 'flex-start', alignSelf: 'center'}}
       />
       <Button title="Send" onPress={() => onSend(text)} />
     </View>

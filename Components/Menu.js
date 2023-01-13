@@ -5,14 +5,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Messagerie from './Messagerie';
 import { Image } from 'react-native';
 import CameraPhone from './CameraPhone';
+import skull from '../assets/skull.png';
+
 
 const Stack = createStackNavigator();
 
 
 function HomeScreen({ navigation }) {
   return (
-    <View>
-      <Text style={{ fontSize: 30 }}>Kwado9</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' }}>
+      <Image source={skull} style={{ width: 200, height: 200, marginTop: 20, marginBottom: 200, alignSelf: 'center' }} />
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
@@ -31,7 +33,7 @@ function HomeScreen({ navigation }) {
 
 function DetailsScreen({ navigation }) {
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' }}>
       <Text>Details Screen</Text>
       <Button
         title="Go to Home"
@@ -43,12 +45,13 @@ function DetailsScreen({ navigation }) {
 
 function MessagerieScreen({ navigation }) {
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#000000', color: 'white' }}>
       <Text>Messagerie Screen</Text>
       <Messagerie />
       <Button
         title="Go to Home"
         onPress={() => navigation.navigate('Kwado9')}
+        style={{ color: 'white', alignSelf: 'flex-end' }}
       />
     </View>
   );
