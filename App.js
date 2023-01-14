@@ -5,7 +5,6 @@ import { Button } from 'react-native';
 import { Alert } from 'react-native';
 import Menu from './Components/Menu';
 
-
 export default function App() {
   return (
     <Menu />
