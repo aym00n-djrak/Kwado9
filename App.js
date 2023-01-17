@@ -4,6 +4,7 @@ import React from 'react';
 import { Button } from 'react-native';
 import { Alert } from 'react-native';
 import Menu from './Components/Menu';
+import 'react-native-url-polyfill/auto';
 
 export default function App() {
   return (

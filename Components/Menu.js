@@ -6,7 +6,7 @@ import Messagerie from "./Messagerie";
 import { Image } from "react-native";
 import CameraPhone from "./CameraPhone";
 import skull from "../assets/skull.png";
-import OpenAI from "./Openai";
+import IA from "./IA";
 
 const Stack = createStackNavigator();
 
@@ -99,7 +99,7 @@ function CameraScreen({ navigation }) {
 
 function AIScreen({ navigation }) {
   return (
-    <OpenAI/>
+    <IA/>
   );
 }
 
