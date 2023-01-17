@@ -7,6 +7,7 @@ import { Image } from "react-native";
 import CameraPhone from "./CameraPhone";
 import skull from "../assets/skull.png";
 import IA from "./IA";
+import WhatsApp from "./Whatsapp";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,12 @@ function HomeScreen({ navigation }) {
         style={{ marginTop: 20 }}
         title="AI"
         onPress={() => navigation.navigate("AI")}
+      />
+
+      <Button
+        style={{ marginTop: 20 }}
+        title="WhatsApp"
+        onPress={() => navigation.navigate("WhatsApp")}
       />
     </View>
   );
@@ -103,6 +110,12 @@ function AIScreen({ navigation }) {
   );
 }
 
+function WhatsAppScreen({ navigation }) {
+  return (
+    <WhatsApp/>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -112,6 +125,7 @@ export default function App() {
         <Stack.Screen name="MessagerieScreen" component={MessagerieScreen} />
         <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="AI" component={AIScreen} />
+        <Stack.Screen name="WhatsApp" component={WhatsAppScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
