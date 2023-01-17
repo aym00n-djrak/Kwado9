@@ -22,7 +22,7 @@ export default function Home() {
   );
 
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
