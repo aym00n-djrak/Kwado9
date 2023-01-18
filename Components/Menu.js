@@ -8,6 +8,7 @@ import CameraPhone from "./CameraPhone";
 import skull from "../assets/skull.png";
 import IA from "./IA";
 import WhatsApp from "./Whatsapp";
+import Signal from "./Signal";
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,12 @@ function HomeScreen({ navigation }) {
         style={{ marginTop: 20 }}
         title="WhatsApp"
         onPress={() => navigation.navigate("WhatsApp")}
+      />
+
+      <Button
+              style={{ marginTop: 20 }}
+              title="Signal"
+              onPress={() => navigation.navigate("Signal")}
       />
     </View>
   );
@@ -116,6 +123,12 @@ function WhatsAppScreen({ navigation }) {
   );
 }
 
+function SignalScreen({ navigation }) {
+    return (
+        <Signal />
+    );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -126,6 +139,7 @@ export default function App() {
         <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="AI" component={AIScreen} />
         <Stack.Screen name="WhatsApp" component={WhatsAppScreen} />
+        <Stack.Screen name="Signal" component={SignalScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

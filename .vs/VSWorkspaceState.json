@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\assets",
+    "\\AwesomeProject",
+    "\\Components",
+    "\\src"
   ],
-  "SelectedNode": "\\App.js",
+  "SelectedNode": "\\Components\\Signal.js",
   "PreviewInSolutionExplorer": false
 }
