@@ -32,9 +32,9 @@ export default function WhatsApp() {
         onPress={() => {
           Linking.openURL(
             "http://api.whatsapp.com/send?text=" +
-              message +
-              "&phone=+" +
-              mobile_no
+            message +
+            "&phone=+" +
+            mobile_no
           );
         }}
       >
