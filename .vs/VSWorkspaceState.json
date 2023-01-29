@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\AwesomeProject",
     "\\Components",
-    "\\src"
+    "\\Components\\MyConversationsList"
   ],
-  "SelectedNode": "\\Components\\Signal.js",
+  "SelectedNode": "\\Components\\MyConversationsList\\some_random_guy.js",
   "PreviewInSolutionExplorer": false
 }
