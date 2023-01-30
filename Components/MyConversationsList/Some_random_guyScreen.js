@@ -9,9 +9,7 @@ import {
     Image,
   } from "react-native";
 
-
-export default function PapaScreen({ navigation }) {
-
+export default function Some_random_guyScreen({ navigation }) {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
