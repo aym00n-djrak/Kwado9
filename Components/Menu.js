@@ -9,9 +9,9 @@ import skull from "../assets/skull.png";
 import IA from "./IA";
 import WhatsApp from "./Whatsapp";
 import Signal from "./Signal";
-import { Papa } from "./MyConversationsList/Papa.js";
-import { PPEdeDingue2018_2028 } from "./MyConversationsList/PPEdeDingue2018_2028.js";
-import { Some_random_guy } from "./MyConversationsList/Some_random_guy.js";
+//import { Papa } from "./MyConversationsList/Papa.js";
+//import { PPEdeDingue2018_2028 } from "./MyConversationsList/PPEdeDingue2018_2028.js";
+//import { Some_random_guy } from "./MyConversationsList/Some_random_guy.js";
 
 const Stack = createStackNavigator();
 
