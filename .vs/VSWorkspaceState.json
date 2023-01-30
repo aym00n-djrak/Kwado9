@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Components",
+    "\\Components\\MyConversationsList"
   ],
-  "SelectedNode": "\\App.js",
+  "SelectedNode": "\\Components\\MyConversationsList\\some_random_guy.js",
   "PreviewInSolutionExplorer": false
 }

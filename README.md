@@ -41,7 +41,7 @@ npm start
 - Enzo GALLOS
 - Téo MAZEPA
 - Albert MANSOURI-MONFARED
-- Irintsoalhapirah ANDONIAINA
+- Irintsoa Lhapirah ANDONIAINA
 
 ## Mentor
 
