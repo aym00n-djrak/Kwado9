@@ -9,6 +9,7 @@ import skull from "../assets/skull.png";
 import IA from "./IA";
 import WhatsApp from "./Whatsapp";
 import Signal from "./Signal";
+import SMS from "./SMS";
 //import { Papa } from "./MyConversationsList/Papa.js";
 //import { PPEdeDingue2018_2028 } from "./MyConversationsList/PPEdeDingue2018_2028.js";
 //import { Some_random_guy } from "./MyConversationsList/Some_random_guy.js";
@@ -30,8 +31,8 @@ function HomeScreen({ navigation }) {
         style={{
           width: 200,
           height: 200,
-          marginTop: 20,
-          marginBottom: 200,
+          marginTop: 10,
+          marginBottom: 100,
           alignSelf: "center",
         }}
       />
@@ -40,35 +41,41 @@ function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Details")}
       />
       <Button
-        style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
         title="Go to Messagerie"
         onPress={() => navigation.navigate("MessagerieScreen")}
       />
       <Button
-        style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
         title="Go to Camera"
         onPress={() => navigation.navigate("Camera")}
       />
       <Button
-        style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
         title="AI"
         onPress={() => navigation.navigate("AI")}
+          />
+
+      <Button
+        style={{ marginTop: 10 }}
+        title="SMS"
+        onPress={() => navigation.navigate("SMS")}
       />
 
       <Button
-        style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
         title="WhatsApp"
         onPress={() => navigation.navigate("WhatsApp")}
       />
 
       <Button
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
               title="Signal"
               onPress={() => navigation.navigate("Signal")}
           />
 
       <Button
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
               title="MyConversations"
               onPress={() => navigation.navigate("MyConversations")}
           />
@@ -118,6 +125,10 @@ function MessagerieScreen({ navigation }) {
 
 function CameraScreen({ navigation }) {
   return <CameraPhone />;
+}
+
+function SMSScreen({ navigation }) {
+    return <SMS />;
 }
 
 function AIScreen({ navigation }) {
@@ -640,7 +651,8 @@ export default function App() {
         <Stack.Screen name="Papa" component={PapaScreen} />
         <Stack.Screen name="PPEdeDingue2018_2028" component={PPEdeDingue2018_2028Screen} />
         <Stack.Screen name="Some_random_guy" component={Some_random_guyScreen} />
-      </Stack.Navigator>
+        <Stack.Screen name="SMS" component={SMSScreen} />
+       </Stack.Navigator>
     </NavigationContainer>
   );
 }
