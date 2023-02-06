@@ -1,6 +1,6 @@
 # Matrix
 
-## Instroduction
+## Introduction
 Vidéo explicant le fonctionnement de Matrix :
 https://www.youtube.com/watch?v=wSyr8u6dvV0
 
