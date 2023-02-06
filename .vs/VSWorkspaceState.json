@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Components",
+    "\\Components\\MyConversationsList"
   ],
-  "SelectedNode": "\\App.js",
+  "SelectedNode": "\\Components\\Whatsapp.js",
   "PreviewInSolutionExplorer": false
 }

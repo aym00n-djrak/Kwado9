@@ -1,132 +1,66 @@
-import React from "react";
+import { React } from "react";
 import { View, Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Messagerie from "./Messagerie";
-import { Image } from "react-native";
-import CameraPhone from "./CameraPhone";
-import skull from "../assets/skull.png";
-import IA from "./IA";
-import WhatsApp from "./Whatsapp";
+
+import HomeScreen from "./HomeScreen";
+
+import {
+  MessagerieScreen,
+  CameraScreen,
+  AIScreen,
+  WhatsAppScreen,
+  SignalScreen,
+  DetailsScreen,
+  FirebaseScreen,
+  IAtextScreen,
+  SMSScreenScreen,
+} from "./HomeScreen";
+
+import MyConversationsScreen from "./MyConversationsList/ConversationScreen";
+import PapaScreen from "./MyConversationsList/Papa";
+import PPEdeDingue2018_2028Screen from "./MyConversationsList/PPEdeDingue2018_2028";
+import Some_random_guyScreen from "./MyConversationsList/Some_random_guyScreen";
+import { useRoute } from "@react-navigation/native";
+import { useEffect } from "react";
 
 const Stack = createStackNavigator();
 
-function HomeScreen({ navigation }) {
+export default function App({ navigation, user}) {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000000",
-      }}
-    >
-      <Image
-        source={skull}
-        style={{
-          width: 200,
-          height: 200,
-          marginTop: 20,
-          marginBottom: 200,
-          alignSelf: "center",
-        }}
-      />
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        title="Go to Messagerie"
-        onPress={() => navigation.navigate("MessagerieScreen")}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        title="Go to Camera"
-        onPress={() => navigation.navigate("Camera")}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        title="AI"
-        onPress={() => navigation.navigate("AI")}
-      />
+    <>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={() => <HomeScreen user={user} /> } />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="MessagerieScreen" component={MessagerieScreen} />
+          <Stack.Screen name="Camera" component={CameraScreen} />
+          <Stack.Screen name="AI" component={AIScreen} />
+          <Stack.Screen name="WhatsApp" component={WhatsAppScreen} />
+          <Stack.Screen name="Signal" component={SignalScreen} />
 
-      <Button
-        style={{ marginTop: 20 }}
-        title="WhatsApp"
-        onPress={() => navigation.navigate("WhatsApp")}
-      />
-    </View>
+          <Stack.Screen
+            name="MyConversations"
+            component={MyConversationsScreen}
+          />
+          <Stack.Screen name="Papa" component={PapaScreen} />
+          <Stack.Screen
+            name="PPEdeDingue2018_2028"
+            component={PPEdeDingue2018_2028Screen}
+          />
+          <Stack.Screen
+            name="Some_random_guy"
+            component={Some_random_guyScreen}
+          />
+          <Stack.Screen name="Firebase" component={FirebaseScreen} />
+
+          <Stack.Screen name="IAtext" component={IAtextScreen} />
+
+          <Stack.Screen name="SMS" component={SMSScreenScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
-function DetailsScreen({ navigation }) {
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000000",
-      }}
-    >
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate("Kwado9")}
-      />
-    </View>
-  );
-}
 
-function MessagerieScreen({ navigation }) {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        backgroundColor: "#000000",
-        color: "white",
-      }}
-    >
-      <Text>Messagerie Screen</Text>
-      <Messagerie />
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate("Kwado9")}
-        style={{ color: "white", alignSelf: "flex-end" }}
-      />
-    </View>
-  );
-}
-
-function CameraScreen({ navigation }) {
-  return <CameraPhone />;
-}
-
-function AIScreen({ navigation }) {
-  return (
-    <IA/>
-  );
-}
-
-function WhatsAppScreen({ navigation }) {
-  return (
-    <WhatsApp/>
-  );
-}
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Kwado9" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="MessagerieScreen" component={MessagerieScreen} />
-        <Stack.Screen name="Camera" component={CameraScreen} />
-        <Stack.Screen name="AI" component={AIScreen} />
-        <Stack.Screen name="WhatsApp" component={WhatsAppScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
