@@ -9,9 +9,13 @@ import CameraPhone from "./CameraPhone";
 import Firebase from "./Firebase";
 import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
+import { useRoute } from "@react-navigation/native";
 
+export default function HomeScreen({ navigation }) {
 
-export default function HomeScreen({ navigation, user }) {
+  const route = useRoute();
+  const user = route.params?.user;
+  
   return (
     <View
       style={{
@@ -38,7 +42,7 @@ export default function HomeScreen({ navigation, user }) {
           marginBottom: 20,
         }}
       >
-        Kwado9, {user.email}
+        Kwado9, {user?.email}
       </Text>
       <Button
         title="Go to Details"
