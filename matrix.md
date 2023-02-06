@@ -29,6 +29,7 @@ ou
 
 ## Ponts
 [mautrix-bridges](https://docs.mau.fi/bridges/index.html) lien pour installer les ponts
+
 Github/lab de chaque pont :
 | [mautrix/whatsapp](https://github.com/mautrix/whatsapp) | [mautrix/signal](https://github.com/mautrix/signal) |
 | --- | --- |
