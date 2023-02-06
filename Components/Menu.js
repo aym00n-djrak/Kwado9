@@ -10,9 +10,7 @@ import IA from "./IA";
 import WhatsApp from "./Whatsapp";
 import Signal from "./Signal";
 import SMS from "./SMS";
-//import { Papa } from "./MyConversationsList/Papa.js";
-//import { PPEdeDingue2018_2028 } from "./MyConversationsList/PPEdeDingue2018_2028.js";
-//import { Some_random_guy } from "./MyConversationsList/Some_random_guy.js";
+import Firebase from "./Firebase";
 
 const Stack = createStackNavigator();
 
@@ -79,6 +77,13 @@ function HomeScreen({ navigation }) {
               title="MyConversations"
               onPress={() => navigation.navigate("MyConversations")}
           />
+
+      <Button
+              style={{ marginTop: 10 }}
+              title="Firebase"
+              onPress={() => navigation.navigate("Firebase")}
+          />
+
     </View>
   );
 }
@@ -146,6 +151,12 @@ function WhatsAppScreen({ navigation }) {
 function SignalScreen({ navigation }) {
     return (
         <Signal />
+    );
+}
+
+function FirebaseScreen({ navigation }) {
+    return (
+        <Firebase />
     );
 }
 
@@ -652,6 +663,7 @@ export default function App() {
         <Stack.Screen name="PPEdeDingue2018_2028" component={PPEdeDingue2018_2028Screen} />
         <Stack.Screen name="Some_random_guy" component={Some_random_guyScreen} />
         <Stack.Screen name="SMS" component={SMSScreen} />
+        <Stack.Screen name="Firebase" component={FirebaseScreen} />
        </Stack.Navigator>
     </NavigationContainer>
   );
