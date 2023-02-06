@@ -8,8 +8,9 @@ https://www.youtube.com/watch?v=wSyr8u6dvV0
 - nom de domaine (1,20€ sur [Ionos](https://www.ionos.fr/domaine/fr-domaine))
 - serveur local :
 	- [Cloudflare Tunnel](https://www.cloudflare.com/fr-fr/products/tunnel/)
-	- [Tuto Video Cloudflare Tunnel]([https://youtu.be/ey4u7OUAF3c](https://youtu.be/ey4u7OUAF3c "https://youtu.be/ey4u7OUAF3c"))
-ou 
+	- [Tuto Video Cloudflare Tunnel](https://youtu.be/ey4u7OUAF3c)
+
+	ou 
 - Cloud hosting provider :
 	- AWS
 	- Azure
