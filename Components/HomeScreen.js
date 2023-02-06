@@ -10,8 +10,10 @@ import Messagerie from "./Messagerie";
 import IA from "./IA";
 import WhatsApp from "./Whatsapp";
 import Signal from "./Signal";
-import LoginPage from "./LoginPage";
 import CameraPhone from "./CameraPhone";
+import Firebase from "./Firebase";
+import IAtext from "./IAtext";
+import SMSScreen from "./SMS";
 
 export default function HomeScreen({ navigation }) {
     return (
@@ -71,12 +73,25 @@ export default function HomeScreen({ navigation }) {
           title="MyConversations"
           onPress={() => navigation.navigate("MyConversations")}
         />
-  
+
         <Button
           style={{ marginTop: 20 }}
-          title="Login"
-          onPress={() => navigation.navigate("Login")}
+          title="Firebase"
+          onPress={() => navigation.navigate("Firebase")}
         />
+
+        <Button
+          style={{ marginTop: 20 }}
+          title="IAtext"
+          onPress={() => navigation.navigate("IAtext")}
+        />
+
+        <Button
+          style={{ marginTop: 20 }}
+          title="SMS"
+          onPress={() => navigation.navigate("SMS")}
+        />
+
       </View>
     );
   }
@@ -117,10 +132,7 @@ export  function AIScreen({ navigation }) {
   export   function SignalScreen({ navigation }) {
     return <Signal />;
   }
-  
-  export  function ProfileScreen({ navigation }) {
-    return <LoginPage />;
-  }
+
 
 
   export function DetailsScreen({ navigation }) {
@@ -140,4 +152,16 @@ export  function AIScreen({ navigation }) {
         />
       </View>
     );
+  }
+
+  export function FirebaseScreen({ navigation }) {
+    return <Firebase />;
+  }
+
+  export function IAtextScreen({ navigation }) {
+    return <IAtext />;
+  }
+
+  export function SMSScreenScreen({ navigation }) {
+    return <SMSScreen />;
   }

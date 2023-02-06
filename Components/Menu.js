@@ -11,8 +11,10 @@ import {
   AIScreen,
   WhatsAppScreen,
   SignalScreen,
-  ProfileScreen,
   DetailsScreen,
+  FirebaseScreen,
+  IAtextScreen,
+  SMSScreenScreen,
 } from "./HomeScreen";
 
 import MyConversationsScreen from "./MyConversationsList/ConversationScreen";
@@ -24,7 +26,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer    >
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Kwado9" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
@@ -33,7 +35,6 @@ export default function App() {
         <Stack.Screen name="AI" component={AIScreen} />
         <Stack.Screen name="WhatsApp" component={WhatsAppScreen} />
         <Stack.Screen name="Signal" component={SignalScreen} />
-        <Stack.Screen name="Login" component={ProfileScreen} />
 
         <Stack.Screen
           name="MyConversations"
@@ -48,6 +49,12 @@ export default function App() {
           name="Some_random_guy"
           component={Some_random_guyScreen}
         />
+        <Stack.Screen name="Firebase" component={FirebaseScreen} />
+
+        <Stack.Screen name="IAtext" component={IAtextScreen} />
+
+        <Stack.Screen name="SMSScreen" component={SMSScreenScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

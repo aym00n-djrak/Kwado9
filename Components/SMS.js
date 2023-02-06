@@ -16,9 +16,6 @@ export default function SMSScreen() {
     const [message, setMessage] = useState()
     const [selected, setSelected] = useState(false)
     const selectedAnim = useRef(new Animated.Value(1)).current;
-
-
-
     return (
 
 
