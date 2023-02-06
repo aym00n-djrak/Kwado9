@@ -10,8 +10,8 @@ import Firebase from "./Firebase";
 import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
 
+
 export default function HomeScreen({ navigation, user }) {
-  user = "Kwado9";
   return (
     <View
       style={{
@@ -38,7 +38,7 @@ export default function HomeScreen({ navigation, user }) {
           marginBottom: 20,
         }}
       >
-        Kwado9, {user}
+        Kwado9, {user.email}
       </Text>
       <Button
         title="Go to Details"

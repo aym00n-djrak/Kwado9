@@ -6,21 +6,24 @@ import React, {useState} from 'react';
 import { StyleSheet } from 'react-native';
 import { signOut } from 'firebase/auth';
 import { useEffect } from 'react';
+import { useRoute } from '@react-navigation/native';
 
-export default function Firebase({navigation, user}) {
+export default function Firebase({navigation}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const app = initializeApp(firebaseConfig);
 
-    const [login, setLogin] = useState(1);
+    const [user, setUser] = useState('');
+   
+
+    const [login, setLogin] = useState(login);
 
     useEffect(() => {
     console.log(user);
    
     }, [])
 
-    const [user1, setUser] = useState('');
 
     const auth = getAuth();
 
@@ -29,8 +32,8 @@ export default function Firebase({navigation, user}) {
         .then((userCredential) => {
             console.log('Account created')
             setUser(userCredential?.user);
-            console.log(user)
-            Alert.alert('Hello ' + user?.email)      
+            console.log(user);
+            Alert.alert('Hello ' + user.email)      
         
         })
         .catch((error) => {
@@ -42,10 +45,8 @@ export default function Firebase({navigation, user}) {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log('Signed in')
-            const user1= userCredential?.user;
-            console.log(user1)
-            setUser(user1);
-            console.log(user)
+            setUser(userCredential?.user);
+            console.log(user.email)
             Alert.alert('Signed in')      
             setLogin(1);
         })
@@ -100,26 +101,11 @@ export default function Firebase({navigation, user}) {
                 title="Sign Out"
                 onPress={handleSignOut}
             />
-
-            <Button title='Menu' onPress={() => 
-            navigation.navigate('HomeScreen')
-            } />
         </View>
         </>
     )
 }
 
-function HomeScreen({ navigation }) {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('Details')}
-            />
-        </View>
-    );
-}
 
 
 

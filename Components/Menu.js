@@ -21,15 +21,17 @@ import MyConversationsScreen from "./MyConversationsList/ConversationScreen";
 import PapaScreen from "./MyConversationsList/Papa";
 import PPEdeDingue2018_2028Screen from "./MyConversationsList/PPEdeDingue2018_2028";
 import Some_random_guyScreen from "./MyConversationsList/Some_random_guyScreen";
+import { useRoute } from "@react-navigation/native";
+import { useEffect } from "react";
 
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function App({ navigation, user}) {
   return (
     <>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={() => <HomeScreen user={user} /> } />
           <Stack.Screen name="Details" component={DetailsScreen} />
           <Stack.Screen name="MessagerieScreen" component={MessagerieScreen} />
           <Stack.Screen name="Camera" component={CameraScreen} />
