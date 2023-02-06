@@ -32,7 +32,6 @@ export default function HomeScreen({ navigation }) {
             width: 200,
             height: 200,
             marginTop: 20,
-            marginBottom: 200,
             alignSelf: "center",
           }}
         />

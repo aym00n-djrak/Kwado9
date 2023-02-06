@@ -53,7 +53,7 @@ export default function App() {
 
         <Stack.Screen name="IAtext" component={IAtextScreen} />
 
-        <Stack.Screen name="SMSScreen" component={SMSScreenScreen} />
+        <Stack.Screen name="SMS" component={SMSScreenScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
