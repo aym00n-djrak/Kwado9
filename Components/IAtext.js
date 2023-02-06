@@ -12,14 +12,10 @@ import React from "react";
 import { Configuration, OpenAIApi } from "openai";
 
 export default function IAtext() {
-  const [prompt, onChangePrompt] = React.useState(
-    "Generate an image..."
-  );
+  const [prompt, onChangePrompt] = React.useState("Your AI assitant");
   const [result, setResult] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const [imagePlaceholder, setimagePlaceholder] = React.useState(
-    "https://furntech.org.za/wp-content/uploads/2017/05/placeholder-image-300x225.png"
-  );
+  const [text, setText] = React.useState("Your AI assistant");
 
   const configuration = new Configuration({
     apiKey: "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",
@@ -27,16 +23,26 @@ export default function IAtext() {
 
   const openai = new OpenAIApi(configuration);
 
-  const generateImage = async () => {
+  const generateText = async () => {
     try {
       onChangePrompt(`Search ${prompt}..`);
       setLoading(true);
-      const res = await openai.createImage({
+      const res = await openai.complete({
         prompt: prompt,
+        maxTokens: 5,
+        temperature: 0.9,
+        topP: 1,
+        presencePenalty: 0,
+        frequencyPenalty: 0,
+        bestOf: 1,
         n: 1,
-        size: "256x256",
+        stream: false,
+        stop: [
+          "\
+",
+        ],
       });
-      setResult(res.data.data[0].url);
+      setText(res.data.choices[0].text);
     } catch (e) {
       console.error(e);
     } finally {
@@ -47,7 +53,7 @@ export default function IAtext() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.titleText}>React Native Dalle-E</Text>
+        <Text style={styles.titleText}>React Native DaVinci-003</Text>
         <View style={styles.TextInputcontainer}>
           <TextInput
             style={styles.textInput}
@@ -58,7 +64,7 @@ export default function IAtext() {
             numberOfLines={4}
           />
         </View>
-        <TouchableOpacity style={styles.generateButton} onPress={generateImage}>
+        <TouchableOpacity style={styles.generateButton} onPress={generateText}>
           <Text style={styles.generateButtonText}>Generate</Text>
         </TouchableOpacity>
         {loading ? (
@@ -72,24 +78,8 @@ export default function IAtext() {
           <></>
         )}
 
-        <View style={styles.generatedImageContainer}>
-          {result.length > 0 ? (
-            <Image
-              style={styles.generatedImage}
-              source={{
-                uri: result,
-              }}
-            />
-          ) : (
-            <>
-              <Image
-                style={styles.generatedImage}
-                source={{
-                  uri: imagePlaceholder,
-                }}
-              />
-            </>
-          )}
+        <View style={styles.generatedTextContainer}>
+          <Text style={styles.generatedText}>{text}</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -97,54 +87,6 @@ export default function IAtext() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-  },
-  loadingContainer: {
-    paddingHorizontal: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    fontFamily: "Cochin",
-    textAlign: "center",
-  },
 
-  TextInputcontainer: {
-    height: 100,
-    backgroundColor: "#c7c7c7",
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 10,
-    marginVertical: 10,
-  },
-  textInput: {
-    width: "100%",
-    height: "100%",
-    padding: 10,
-  },
-  generateButton: {
-    height: 50,
-    width: "100%",
-    backgroundColor: "black",
-    borderRadius: 10,
-    marginVertical: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  generateButtonText: {
-    color: "white",
-  },
-  generatedImageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  generatedImage: {
-    width: 300,
-    height: 300,
-    resizeMode: "contain",
-  },
 });
+

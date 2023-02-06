@@ -11,6 +11,7 @@ import WhatsApp from "./Whatsapp";
 import Signal from "./Signal";
 import SMS from "./SMS";
 import Firebase from "./Firebase";
+import IAtext from "./IAtext";
 
 const Stack = createStackNavigator();
 
@@ -83,6 +84,12 @@ function HomeScreen({ navigation }) {
               title="Firebase"
               onPress={() => navigation.navigate("Firebase")}
           />
+
+          <Button
+                style={{ marginTop: 10 }}
+                title="AI2"
+                onPress={() => navigation.navigate("AI2")}
+            />
 
     </View>
   );
@@ -158,6 +165,12 @@ function FirebaseScreen({ navigation }) {
     return (
         <Firebase />
     );
+}
+
+function AI2Screen({ navigation }) {
+    return(
+        <IAtext/>
+    )
 }
 
 const contacts = [
@@ -664,6 +677,7 @@ export default function App() {
         <Stack.Screen name="Some_random_guy" component={Some_random_guyScreen} />
         <Stack.Screen name="SMS" component={SMSScreen} />
         <Stack.Screen name="Firebase" component={FirebaseScreen} />
+        <Stack.Screen name="AI2" component={AI2Screen} />
        </Stack.Navigator>
     </NavigationContainer>
   );
