@@ -95,19 +95,19 @@ exit
 sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
 ```
 
-Ajoutez maintenant le dépôt Element.io à votre liste de dépôts en utilisant la commande suivante :
+2. Ajoutez maintenant le dépôt Element.io à votre liste de dépôts en utilisant la commande suivante :
 
 ```bash
 echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
 ```
 
-Mettez à jour la liste des paquets disponibles sur votre système en utilisant la commande suivante :
+3. Mettez à jour la liste des paquets disponibles sur votre système en utilisant la commande suivante :
 
 ```bash
 sudo apt update
 ```
 
-Installons maintenant le paquet Element Desktop en utilisant la commande suivante :
+4. Installons maintenant le paquet Element Desktop en utilisant la commande suivante :
 
 ```bash
 sudo apt install element-desktop -y
