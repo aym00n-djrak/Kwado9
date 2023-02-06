@@ -27,9 +27,9 @@ ou
 - [hik999 Guide](https://hik999.medium.com/cloud-deployment-of-matrix-homeserver-f08ba5e8109e) AWS & Ansible (100$ a month)
 - [Cyberhost Guide](https://cyberhost.uk/element-matrix-setup/#installmatrixandelement) Digital Ocean Droplet & Docker & Ansible
 
-## Bridges
-[mautrix-bridges](https://docs.mau.fi/bridges/index.html)to install all bridges
-Direct links :
+## Ponts
+[mautrix-bridges](https://docs.mau.fi/bridges/index.html) lien pour installer les ponts
+Github/lab de chaque pont :
 | [mautrix/whatsapp](https://github.com/mautrix/whatsapp) | [mautrix/signal](https://github.com/mautrix/signal) |
 | --- | --- |
 | [mautrix/telegram](https://github.com/mautrix/telegram) | [mautrix/facebook](https://github.com/mautrix/facebook) |
@@ -39,6 +39,6 @@ Direct links :
 | [hifi/heisenbridge](https://github.com/hifi/heisenbridge) | [mautrix/googlechat](https://github.com/mautrix/googlechat) |
 | [beeper/linkedin](https://github.com/beeper/linkedin) | [beeper/groupme](https://github.com/beeper/groupme) |
 
-## Usefull links
+## Liens utiles
 - [Synapse Guide](https://matrix.org/docs/guides)
 - [Matrix Guide](https://matrix-org.github.io/synapse/latest/welcome_and_overview.html)
