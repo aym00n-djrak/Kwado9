@@ -16,6 +16,7 @@ https://www.youtube.com/watch?v=wSyr8u6dvV0
 	- Azure
 	- Google Cloud
 	- DigitalOcean
+	- OVH
 
 ## Installation
 - [Beeper self-host Guide](https://github.com/beeper/self-host) Digital Ocean Droplet & Docker & Ansible
