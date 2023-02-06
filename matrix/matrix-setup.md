@@ -1,4 +1,4 @@
-# Installation de Matrix et Element
+# Installation de Matrix et Element en local
 
 ## Prérequis
 
