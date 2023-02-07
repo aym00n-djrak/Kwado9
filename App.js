@@ -22,7 +22,7 @@ export default function App() {
   const [user, setUser] = useState('');
  
 
-  const [login, setLogin] = useState(1);
+  const [login, setLogin] = useState(0);
 
   useEffect(() => {
   console.log(user);
