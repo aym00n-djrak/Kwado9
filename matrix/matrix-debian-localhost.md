@@ -1,4 +1,4 @@
-# Installation de Matrix et Element en local en partant de 0
+# Installation de Matrix et Element en local sur Ubuntu ou Debian
 
 ## Prérequis
 
