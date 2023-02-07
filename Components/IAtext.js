@@ -18,29 +18,20 @@ export default function IAtext() {
   const [text, setText] = React.useState("Your AI assistant");
 
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
 
   const generateText = async () => {
     try {
-      onChangePrompt(`Search ${prompt}..`);
+      onChangePrompt(`${prompt}`);
       setLoading(true);
-      const res = await openai.complete({
+      const res = await openai.createCompletion({
+        model: "text-davinci-003",
         prompt: prompt,
-        maxTokens: 5,
-        temperature: 0.9,
-        topP: 1,
-        presencePenalty: 0,
-        frequencyPenalty: 0,
-        bestOf: 1,
-        n: 1,
-        stream: false,
-        stop: [
-          "\
-",
-        ],
+        temperature: 0,
+        max_tokens: 500,
       });
       setText(res.data.choices[0].text);
     } catch (e) {
@@ -49,6 +40,11 @@ export default function IAtext() {
       setLoading(false);
     }
   };
+
+
+  console.log(text);
+  console.log(prompt);
+  console.log(result);
 
   return (
     <SafeAreaView>
@@ -87,6 +83,54 @@ export default function IAtext() {
 }
 
 const styles = StyleSheet.create({
+
+  container: {
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 10,
+  },
+  TextInputcontainer: {
+    backgroundColor: "#f3f3f3",
+    padding: 10,
+    borderRadius: 10,
+    margin: 10,
+  },
+  textInput: {
+    height: 100,
+    width: 300,
+  },
+  generateButton: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+  generateButtonText: {
+    fontSize: 20,
+  },
+  loadingContainer: {
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  generatedTextContainer: {
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  generatedText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 10,
+  },
 
 });
 
