@@ -17,7 +17,7 @@ WSL:
   - (optionnel) Installez [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us) (Windows 10)
 
 Docker Destop:
-- Installez [Docker Destop](https://www.docker.com/products/docker-desktop/)
+- Installez [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - (optionnel) Créez un compte sur DockerHub pour pouvoir publier ses propre images
 
 ## Installation
