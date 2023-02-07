@@ -11,6 +11,9 @@ import { useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { TextAnimationFadeIn, TextAnimationZoom, TextAnimationRain, TextAnimationSlideDown, TextAnimationSlideUp, TextAnimationSlideLeft, TextAnimationSlideRight, TextAnimationShake, TextAnimationReverse, TextAnimationDeZoom } from 'react-native-text-effects';
 
+//sources: https://products.ls.graphics/mesh-gradients/
+
+
 export default function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -98,16 +101,16 @@ export default function App() {
             onChangeText={(password) => setPassword(password)}
             style={styles.input}
                       />
+                      <View style={styles.buttonBackground}>
+                          <Text style={styles.generateButton} onPress={handleCreateAccount}>Sign up</Text>
 
+
+                          <Text style={styles.generateButton} onPress={handleSignIn}>Sign in</Text>
+                          <Text style={styles.generateButton} onPress={handleSignOut}>Sign out</Text>
+
+                      </View>
                   </View>
-                  <View style={styles.buttonBackground}>
-                      <Text style={styles.generateButton} onPress={handleCreateAccount}>Sign up</Text>
 
-
-                      <Text style={styles.generateButton} onPress={handleSignIn}>Sign in</Text>
-                      <Text style={styles.generateButton} onPress={handleSignOut}>Sign out</Text>
-
-              </View>
               </View>
 }
     </>
@@ -125,7 +128,7 @@ const styles = StyleSheet.create({
         //alignItems: "center",
         marginTop: 170,
         backgroundColor: 'transparent',
-        marginRight: 70,
+        marginRight: 30,
     },
   input: {
       borderWidth: 1,
@@ -151,12 +154,12 @@ const styles = StyleSheet.create({
     generateButton: {
         //alignItems: 'center',
         //justifyContent: 'center',
-        paddingVertical: 15,
-        paddingHorizontal: 29,
-        borderRadius: 20,
-        margin: 4,
-        elevation: 5,
-        marginRight: 220,
+        paddingVertical: 8,
+        paddingHorizontal: 25,
+        borderRadius: 13,
+        margin: 6,
+        elevation: 8,
+        marginRight: 190,
         backgroundColor: '#483d8b',
         color: "white",
         fontWeight: 'bold',
@@ -165,8 +168,8 @@ const styles = StyleSheet.create({
 
     },
     buttonBackground: {
-        marginBottom: 140,
-        marginLeft: 4,
+        marginBottom: 120,
+        marginTop: 13,
         background: "transparent",
 
     },
