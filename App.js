@@ -11,6 +11,9 @@ import { useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { TextAnimationFadeIn, TextAnimationZoom, TextAnimationRain, TextAnimationSlideDown, TextAnimationSlideUp, TextAnimationSlideLeft, TextAnimationSlideRight, TextAnimationShake, TextAnimationReverse, TextAnimationDeZoom } from 'react-native-text-effects';
 
+//sources: https://products.ls.graphics/mesh-gradients/
+
+
 export default function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

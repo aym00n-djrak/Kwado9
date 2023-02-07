@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { View, Text, Button, Image } from "react-native";
+import { StyleSheet, View, Text, Button, Image } from "react-native";
 import skull from "../assets/skull.png";
 import Messagerie from "./Messagerie";
 import IA from "./IA";
@@ -10,6 +10,7 @@ import Firebase from "./Firebase";
 import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
 import { useRoute } from "@react-navigation/native";
+//sources: https://products.ls.graphics/mesh-gradients/
 
 export default function HomeScreen({ navigation }) {
 
@@ -17,92 +18,40 @@ export default function HomeScreen({ navigation }) {
   const user = route.params?.user;
   
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000000",
-      }}
-    >
-      <Image
-        source={skull}
-        style={{
-          width: 200,
-          height: 200,
-          marginTop: 20,
-          alignSelf: "center",
-        }}
-      />
-      <Text
-        style={{
-          color: "white",
-          fontSize: 20,
-          marginTop: 20,
-          marginBottom: 20,
-        }}
-      >
-        Kwado9, {user?.email}
-      </Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        title="Go to Messagerie"
-        onPress={() => navigation.navigate("MessagerieScreen")}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        title="Go to Camera"
-        onPress={() => navigation.navigate("Camera")}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        title="AI"
-        onPress={() => navigation.navigate("AI")}
-      />
 
-      <Button
-        style={{ marginTop: 20 }}
-        title="WhatsApp"
-        onPress={() => navigation.navigate("WhatsApp")}
-      />
+          <View style={styles.container}>
+              <Image
+              source={{ uri: 'https://products.ls.graphics/mesh-gradients/images/28.-Deco.jpg' }}
+                  style={styles.background}
+              />
+          <Text
+              style={{
+                  color: "gray",
+                  fontSize: 10,
+              }}>
+              CONNECTED AS: Kwado9, {user?.email}
+          </Text>
+          <Image style={styles.logo} source={skull} />
+          <View style={styles.buttonBackground}>
+              <Text style={styles.generateButton} onPress={() => navigation.navigate("Details")}>Details</Text>
+              <Text style={styles.generateButton} onPress={() => navigation.navigate("MessagerieScreen")}>Go to Messagerie</Text>
+              <Text style={styles.generateButton} onPress={() => navigation.navigate("Camera")}>Go to Camera</Text>
+              <Text style={styles.generateButton} onPress={() => navigation.navigate("AI")}>Image AI</Text>
+              <Text style={styles.generateButton} onPress={() => navigation.navigate("WhatsApp")}>WhatsApp</Text>
+              <Text style={styles.generateButton2} onPress={() => navigation.navigate("Signal")}>Signal</Text>
+              <Text style={styles.generateButton2} onPress={() => navigation.navigate("MyConversations")}>My Conversations</Text>
+              <Text style={styles.generateButton2} onPress={() => {
+                  navigation.navigate("Firebase", { user });
+                  console.log(user);
+              }}>Firebase</Text>
+              <Text style={styles.generateButton2} onPress={() => navigation.navigate("IAtext")}>IAtext</Text>
+              <Text style={styles.generateButton2} onPress={() => navigation.navigate("SMS")}>SMS</Text>
+              </View>
+      </View>
 
-      <Button
-        style={{ marginTop: 20 }}
-        title="Signal"
-        onPress={() => navigation.navigate("Signal")}
-      />
 
-      <Button
-        style={{ marginTop: 20 }}
-        title="MyConversations"
-        onPress={() => navigation.navigate("MyConversations")}
-      />
 
-      <Button
-        style={{ marginTop: 20 }}
-        title="Firebase"
-        onPress={() => {
-          navigation.navigate("Firebase", { user });
-          console.log(user);
-        }}
-      />
 
-      <Button
-        style={{ marginTop: 20 }}
-        title="IAtext"
-        onPress={() => navigation.navigate("IAtext")}
-      />
-
-      <Button
-        style={{ marginTop: 20 }}
-        title="SMS"
-        onPress={() => navigation.navigate("SMS")}
-      />
-    </View>
   );
 }
 
@@ -173,3 +122,64 @@ export function IAtextScreen({ navigation }) {
 export function SMSScreenScreen({ navigation }) {
   return <SMSScreen />;
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        backgroundColor: "#ffffff",
+    },
+    background: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+    },
+    generateButton: {
+        textAlign: 'left',
+        paddingVertical: 5,
+        height: 40,
+        width: 210,
+        paddingHorizontal: 15,
+        borderRadius: 22,
+        borderWidth: 1,
+        borderColor: "#d3d3d3",
+        margin: 3,
+        elevation: 1,
+        marginRight: 120,
+        backgroundColor: '#f0fff0',
+        color: "#2f4f4f",
+        fontWeight: 'bold',
+        opacity: 0.92,
+        fontSize: 17,
+        marginLeft: 10,
+    },
+    generateButton2: {
+        textAlign: 'right',
+        paddingVertical: 5,
+        height: 40,
+        width: 220, 
+        paddingHorizontal: 15,
+        borderRadius: 22,
+        borderWidth: 1,
+        borderColor: "#d3d3d3",
+        margin: 3,
+        elevation: 1,
+        marginRight: 10,
+        backgroundColor: '#191970',
+        color: "#fdf5e6",
+        fontWeight: 'bold',
+        opacity: 0.72,
+        fontSize: 17,
+        marginLeft: 120,
+    },
+    buttonBackground: {
+        opacity: 1,
+    },
+    logo: {
+        width: 390,
+        height: 190,
+        resizeMode: 'contain',
+        opacity: 0.99,
+    },
+})
