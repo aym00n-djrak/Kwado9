@@ -15,6 +15,7 @@ import {
   FirebaseScreen,
   IAtextScreen,
   SMSScreenScreen,
+  MatrixScreen,
 } from "./HomeScreen";
 
 import MyConversationsScreen from "./MyConversationsList/ConversationScreen";
@@ -54,6 +55,8 @@ export default function App({user}) {
         <Stack.Screen name="IAtext" component={IAtextScreen} />
 
         <Stack.Screen name="SMS" component={SMSScreenScreen} />
+
+        <Stack.Screen name="Matrix" component={MatrixScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

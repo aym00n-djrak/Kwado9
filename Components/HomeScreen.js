@@ -10,6 +10,8 @@ import Firebase from "./Firebase";
 import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
 import { useRoute } from "@react-navigation/native";
+import Matrix from "./Matrix";
+
 //sources: https://products.ls.graphics/mesh-gradients/
 
 export default function HomeScreen({ navigation }) {
@@ -46,6 +48,7 @@ export default function HomeScreen({ navigation }) {
               }}>Firebase</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("IAtext")}>IAtext</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("SMS")}>SMS</Text>
+              <Text style={styles.generateButton2} onPress={() => navigation.navigate("Matrix")}>Matrix</Text>
               </View>
       </View>
 
@@ -123,6 +126,10 @@ export function SMSScreenScreen({ navigation }) {
   return <SMSScreen />;
 }
 
+
+export function MatrixScreen({ navigation }) {
+  return <Matrix />;
+}
 
 const styles = StyleSheet.create({
     container: {
