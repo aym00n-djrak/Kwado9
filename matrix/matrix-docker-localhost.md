@@ -19,7 +19,7 @@ WSL:
 Docker Destop:
 - Installez [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - (optionnel) Créez un compte sur DockerHub pour pouvoir publier ses propre images
-- Dans Docker Destop, dans paramètres > ressources > WSL Integration > Enable integration with additional distros > activer Ubuntu > Cliquez sur Apply and restart
+- Dans Docker Destop, dans paramètres > ressources > WSL Integration > Enable integration with additional distros > activez Ubuntu > Cliquez sur Apply and restart
 
 ## Installation
 
