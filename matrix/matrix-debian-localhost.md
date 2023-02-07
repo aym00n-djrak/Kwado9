@@ -1,8 +1,8 @@
-# Installation de Matrix et Element en local
+# Installation de Matrix et Element en local en partant de 0
 
 ## Prérequis
 
-Etre sur Ubuntu ou Debian 
+PC ou vm sur Debian ou Ubuntu (ne fonctionne pas sur wsl)  
 
 ## Installation de Matrix
 1. Ouvrez une session en mode administrateur en exécutant la commande suivante :
