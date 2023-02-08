@@ -30,7 +30,6 @@ export default function App({user}) {
     <NavigationContainer    >
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Kwado9" component={HomeScreen} initialParams={{user : user}}/>
-        <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="MessagerieScreen" component={MessagerieScreen} />
         <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="AI" component={AIScreen} />

@@ -3,7 +3,13 @@ import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
+
 //inspiré de: https://reactnavigation.org/docs/tab-based-navigation/
+
+
+
+
 function HomeScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -20,10 +26,13 @@ function SettingsScreen() {
     );
 }
 
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
     return (
+
             <Tab.Navigator
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
@@ -44,7 +53,9 @@ export default function App() {
                 })}
             >
             <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarBadge: 3 }} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+
+
     );
 }

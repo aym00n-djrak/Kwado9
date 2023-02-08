@@ -14,7 +14,7 @@ import { useRoute } from "@react-navigation/native";
 import Matrix from "./Matrix";
 
 //sources: https://products.ls.graphics/mesh-gradients/
-
+//j'ai enlevé: <Text style={styles.generateButton2} onPress={() => {navigation.navigate("Firebase", { user });console.log(user);}}>Firebase</Text>
 export default function HomeScreen({ navigation }) {
 
   const route = useRoute();
@@ -36,17 +36,12 @@ export default function HomeScreen({ navigation }) {
           </Text>
           <Image style={styles.logo} source={skull} />
           <View style={styles.buttonBackground}>
-              <Text style={styles.generateButton} onPress={() => navigation.navigate("Details")}>Details</Text>
               <Text style={styles.generateButton} onPress={() => navigation.navigate("MessagerieScreen")}>Go to Messagerie</Text>
               <Text style={styles.generateButton} onPress={() => navigation.navigate("Camera")}>Go to Camera</Text>
               <Text style={styles.generateButton} onPress={() => navigation.navigate("AI")}>Image AI</Text>
               <Text style={styles.generateButton} onPress={() => navigation.navigate("WhatsApp")}>WhatsApp</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("Signal")}>Signal</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("MyConversations")}>My Conversations</Text>
-              <Text style={styles.generateButton2} onPress={() => {
-                  navigation.navigate("Firebase", { user });
-                  console.log(user);
-              }}>Firebase</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("IAtext")}>IAtext</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("SMS")}>SMS</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("Matrix")}>Matrix</Text>
@@ -96,24 +91,7 @@ export function SignalScreen({ navigation }) {
   return <Signal />;
 }
 
-export function DetailsScreen({ navigation }) {
-    return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000000",
-      }}
-    >
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate("Kwado9")}
-      />
-    </View>
-  );
-}
+
 
 export function FirebaseScreen({ navigation }) {
   return <Firebase />;
@@ -188,6 +166,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 190,
         resizeMode: 'contain',
+        flex: 0.6,
         opacity: 0.99,
     },
 })

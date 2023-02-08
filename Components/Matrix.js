@@ -1,8 +1,10 @@
 import * as sdk from "matrix-js-sdk";
 
 import React from "react";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput, Image} from "react-native";
 import { useEffect } from "react";
+import { TouchableOpacity } from "react-native";
+import { TextAnimationSlideDown } from 'react-native-text-effects';
 
 export default function Matrix() {
   const baseUrl = "https://matrix.org";
@@ -259,11 +261,16 @@ export default function Matrix() {
   }
 
 
-  return (
-    <>
-      <View>
-        <Text style={styles.container}>Matrix Server</Text>
-        <Text>Token: {Token}</Text>
+  return (<>
+          <View style={styles.container}>
+              <Image
+                  source={{ uri: 'https://products.ls.graphics/mesh-gradients/images/88.-Sunny_1.jpg' }}
+                  style={styles.background}
+              />
+              <TextAnimationSlideDown value={"Matrix server"} delay={100} duration={100} useNativeDriver={true} style={{
+                  color: '#48d1cc', fontSize: 40, fontWeight: 'bold'
+              }} />
+              <Text>Token: {Token}</Text>
         <Text>UserId: </Text>
                   <Text>Room ID: </Text>
                   <TextInput style={styles.input} onChangeText={text => setRoomname(text)} value={roomname}></TextInput>
@@ -272,8 +279,8 @@ export default function Matrix() {
           <Button
             title="Login"
             onPress={() => login()}
-          />
-          <Button title="Send Message" onPress={() => sendMessage(message)} />
+              />
+              <Button title="Send Message" onPress={() => sendMessage(message)} />
           <Button title="Receive Message" onPress={() => receiveMessage()} />
         </View>
         <Button title="Send Message Albert" onPress={() => sendMessageAlbert(message)} />
@@ -296,22 +303,27 @@ export default function Matrix() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   bouton: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: 10,
-    marginTop: 50,
+    padding: 2,
   },
   input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-  },
-
+      height: 40,
+      width: 320,
+      margin: 12,
+      borderWidth: 1,
+      borderRadius: 22
+    },
+    background: {
+        height: "100%",
+        margin: "100%",
+        position: 'absolute'
+    }
 });

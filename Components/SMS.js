@@ -84,7 +84,7 @@ export default function SMSScreen() {
 
   const showRecipients = () => {
     if (recipients.length === 0) {
-      return <Text>No recipients added!</Text>;
+      return <View><Text>No recipients added</Text></View>
     }
 
     return recipients.map((recipient, index) => {
@@ -105,16 +105,16 @@ export default function SMSScreen() {
         colors={["#003399", "#006666"]}
         style={styles.background}
       >
-        <TextAnimationFadeIn
-          value={"Send an SMS!"}
-          delay={100}
-          duration={1000}
-          style={{
-            color: "#40e0d0",
-            fontWeight: "bold",
-          }}
-        />
-      </LinearGradient>
+          </LinearGradient>
+          <TextAnimationFadeIn
+              value={"Send an SMS!"}
+              delay={100}
+              duration={1000}
+              style={{
+                  color: "#40e0d0",
+                  fontWeight: "bold",
+              }}
+          />
       <View style={styles.inputContainer}>
         <Image
           style={styles.inputIcon}
@@ -122,12 +122,14 @@ export default function SMSScreen() {
         />
         <TextInput
           value={phoneNumber}
-          placeholder="Phone Number"
-          onChangeText={(value) => setPhoneNumber(value)}
+                  placeholder="Recipient number"
+                  keyboardType='numeric'
+                  onChangeText={(value) => setPhoneNumber(value), addNumber}
           style={styles.textInput}
-          />
-
-        <Button title="Add Number" onPress={addNumber} />
+              />
+              <TouchableOpacity style={styles.recipientButton} onPress={() => setRecipients([])}>
+                  <Text style={styles.buttonText}>Clear</Text>
+              </TouchableOpacity>
         </View>
 
 
@@ -136,7 +138,7 @@ export default function SMSScreen() {
      
         <TextInput
           value={message}
-          placeholder="Message"
+          placeholder="  Write your message here..."
           underlineColorAndroid="transparent"
           multiline={true}
           numberOfLines={4}
@@ -148,12 +150,12 @@ export default function SMSScreen() {
 
       {showRecipients()}
 
-      <Button title="Clear Recipients" onPress={() => setRecipients([])} />
+
 
       {isAvailable ? (
                         <Animated.View style={[{ transform: [{ scale: selectedAnim }] }]}>
 
-        <TouchableOpacity title="Send SMS"  onPress={() => {
+                  <TouchableOpacity title="Send SMS" onPress={() => {
             Animated.sequence([
                 Animated.timing(selectedAnim, {
                     toValue: 1.3,
@@ -248,8 +250,27 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 100,
     borderRadius: 30,
-  },
+    },
+    recipientButton: {
+        backgroundColor: "#faebd7",
+        opacity: 0.59,
+        width: 50,
+        height: 30,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: "#ffe4b5",
+        color: "#d3d3d3",
+        fontSize: 6,
+    },
   buttonText: {
-    color: "white",
-  },
+      color: "#008080",
+      fontSize: 13,
+      textAlign: "center",
+      fontWeight: "bold"
+    },
+    background: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+    }
 });

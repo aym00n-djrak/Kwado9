@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'transparent',
     margin: 64,
+
   },
   button: {
     flex: 1,

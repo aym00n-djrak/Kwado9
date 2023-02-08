@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   View,
   Image,
-  ActivityIndicator,
+    ActivityIndicator,
+    ScrollView,
+    StatusBar,
 } from "react-native";
 import React from "react";
 import { Configuration, OpenAIApi } from "openai";
@@ -47,7 +49,6 @@ export default function IAtext() {
   console.log(result);
 
   return (
-    <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.titleText}>React Native DaVinci-003</Text>
         <View style={styles.TextInputcontainer}>
@@ -74,11 +75,13 @@ export default function IAtext() {
           <></>
         )}
 
-        <View style={styles.generatedTextContainer}>
-          <Text style={styles.generatedText}>{text}</Text>
-        </View>
+                  <ScrollView>
+              <Text style={styles.generatedText}>{ text}</Text>
+                  </ScrollView>
       </View>
-    </SafeAreaView>
+
+
+
   );
 }
 
@@ -87,7 +90,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+        justifyContent: "center",
+    flex: 1
   },
   titleText: {
     fontSize: 20,
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 100,
-    width: 300,
+      width: 300,
   },
   generateButton: {
     alignItems: "center",
@@ -130,7 +134,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     margin: 10,
-  },
-
+    }
 });
 
