@@ -1,11 +1,11 @@
 // This is an Example to Send WhatsApp Message from React Native App
-//inspiré de https://www.rnexamples.com/react-native-examples/bw/Login-Screen-with-background-and-logo
+//inspirï¿½ de https://www.rnexamples.com/react-native-examples/bw/Login-Screen-with-background-and-logo
 // et de : https://products.ls.graphics/mesh-gradients/
 
-import React, { Component, useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, Linking, Image, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { TextAnimationFadeIn, TextAnimationZoom, TextAnimationRain, TextAnimationSlideDown, TextAnimationSlideUp, TextAnimationSlideLeft, TextAnimationSlideRight, TextAnimationShake, TextAnimationReverse, TextAnimationDeZoom } from 'react-native-text-effects';
+import { TextAnimationSlideDown} from 'react-native-text-effects';
 
 
 export default function WhatsApp() {
@@ -26,7 +26,7 @@ export default function WhatsApp() {
               />
           </View>
           <View style={styles.formContainer}>
-                <TextAnimationSlideDown value={"WhatsApp!"} delay={100} duration={1000} style={{
+                <TextAnimationSlideDown value={"WhatsApp!"} delay={100} duration={1000} useNativeDriver={true} style={{
                     color: '#3cb371', fontSize: 40, fontWeight: 'bold'
  }} />
 

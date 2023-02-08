@@ -1,15 +1,18 @@
 import { StyleSheet, Text, Image, View,TextInput, Button, Alert } from 'react-native';
 import React from 'react';
 import Menu from './Components/Menu';
-import 'react-native-url-polyfill/auto';
 import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 import  {initializeApp} from 'firebase/app';
 import { firebaseConfig } from './firebaseConfig';
 import  {useState} from 'react';
 import { signOut } from 'firebase/auth';
 import { useEffect } from 'react';
-import { useRoute } from '@react-navigation/native';
-import { TextAnimationFadeIn, TextAnimationZoom, TextAnimationRain, TextAnimationSlideDown, TextAnimationSlideUp, TextAnimationSlideLeft, TextAnimationSlideRight, TextAnimationShake, TextAnimationReverse, TextAnimationDeZoom } from 'react-native-text-effects';
+import {  TextAnimationShake } from 'react-native-text-effects';
+
+import "intl";
+import "intl/locale-data/jsonp/fr";
+
+import "react-native-url-polyfill/auto";
 
 //sources: https://products.ls.graphics/mesh-gradients/
 
@@ -83,9 +86,10 @@ export default function App() {
                   />
                   <View style={styles.formulaire}>
 
-                      <TextAnimationShake value={"Kwado9"} delay={100} duration={1000} style={{
+                      <TextAnimationShake value={"Kwado9"} delay={100} duration={1000} useNativeDriver={true} style={{
                           color: '#f5f5f5', fontSize: 60, fontWeight: 'bold', opacity: 0.7
-                      }} />
+                      }} 
+                      />
 
                       <Text style={styles.inputDescription}>Email</Text>
         <TextInput
