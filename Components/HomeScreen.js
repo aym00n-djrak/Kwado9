@@ -10,6 +10,7 @@ import Firebase from "./Firebase";
 import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
 import { useRoute } from "@react-navigation/native";
+
 //import Matrix from "./Matrix";
 
 //sources: https://products.ls.graphics/mesh-gradients/
@@ -96,7 +97,7 @@ export function SignalScreen({ navigation }) {
 }
 
 export function DetailsScreen({ navigation }) {
-  return (
+    return (
     <View
       style={{
         flex: 1,

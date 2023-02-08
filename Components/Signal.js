@@ -1,18 +1,50 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Linking, TextInput } from "react-native";
-import { TouchableOpacity } from "react-native";
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
-export default function Signal() {
+//inspiré de: https://reactnavigation.org/docs/tab-based-navigation/
+function HomeScreen() {
     return (
-    <View
-        style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#000000",
-        }}>
-        <Text>Signal Screen</Text>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Home!</Text>
         </View>
+    );
+}
+
+function SettingsScreen() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Settings!</Text>
+        </View>
+    );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+    return (
+            <Tab.Navigator
+                screenOptions={({ route }) => ({
+                    tabBarIcon: ({ focused, color, size }) => {
+                        let iconName;
+
+                        if (route.name === 'Home') {
+                            iconName = focused
+                                ? 'ios-information-circle'
+                                : 'ios-information-circle-outline';
+                        } else if (route.name === 'Settings') {
+                            iconName = focused ? 'ios-list' : 'ios-list-outline';
+                        }
+
+                        return <Ionicons name={iconName} size={size} color={color} />;
+                    },
+                    tabBarActiveTintColor: 'tomato',
+                    tabBarInactiveTintColor: 'gray',
+                })}
+            >
+            <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarBadge: 3 }} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
     );
 }
