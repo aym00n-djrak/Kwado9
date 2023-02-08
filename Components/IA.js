@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import React from "react";
 import { Configuration, OpenAIApi } from "openai";
+import dalle2 from "../assets/dalle2.png";
+import meshgradient from "../assets/meshgradient.png";
 
 export default function Home() {
   const [prompt, onChangePrompt] = React.useState(
@@ -45,7 +47,9 @@ export default function Home() {
   };
 
   return (
-    <SafeAreaView>
+      <SafeAreaView>
+          <Image style={styles.background} source={meshgradient} />
+          <Image style={styles.dalle} source={dalle2} />
       <View style={styles.container}>
         <Text style={styles.titleText}>React Native Dalle-E</Text>
         <View style={styles.TextInputcontainer}>
@@ -146,5 +150,16 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     resizeMode: "contain",
-  },
+    },
+    dalle: {
+        width: 250,
+        height: 50,
+        marginTop: 10,
+        marginLeft: 45,
+    },
+    background: {
+        width: "150%",
+        height: "150%",
+        position: 'absolute',
+    },
 });

@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     logo: {
-        width: 390,
+        width: 370,
         height: 190,
         resizeMode: 'contain',
         opacity: 0.99,

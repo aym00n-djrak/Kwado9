@@ -139,16 +139,17 @@ const Tab = createBottomTabNavigator();
                     return <Ionicons name={iconName} size={size} color={color} />;
                   },
                   tabBarLabelStyle: {
-                      fontSize: 16, color: "#e0ffff",
+                      fontSize: 10, color: "#e0ffff",
                       fontWeight: "bold", marginBottom: 7,
                       textShadowColor: "#white", textShadowOffset: { width: -0.5, height: 0.5 },
-                      textShadowRadius: 2, opacity: 0.9},
+                      textShadowRadius: 2, opacity: 0.9
+                  },
                 tabBarIconStyle: { opacity: 0.9 },
                   tabBarActiveTintColor: '#40e0d0',
                   tabBarInactiveTintColor: '#fffafa',
                 tabBarStyle: {
                     backgroundColor: "#2f4f4f",
-                    flex: 0.11,
+                    flex: 0.09,
                     shadowColor: "black",
                   }
                 })}
