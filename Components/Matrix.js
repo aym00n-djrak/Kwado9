@@ -2,6 +2,7 @@ import * as sdk from "matrix-js-sdk";
 
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { useEffect } from "react";
 
 export default function Matrix() {
   const baseUrl = "https://matrix.org";
@@ -12,9 +13,10 @@ export default function Matrix() {
   const utilisateur = sdk.createClient({
     baseUrl: baseUrl,
     accessToken: Token,
+    userId: "@remyjova:matrix.org",
   });
 
-  async function login(baseUrl, username, password) {
+  useEffect(async () => {
     const client = sdk.createClient({
       baseUrl: baseUrl,
     });
@@ -26,25 +28,23 @@ export default function Matrix() {
       const accessToken = response.access_token;
       setToken(accessToken);
       console.log("Login successful, access token:", accessToken);
+      
       return accessToken;
     } catch (error) {
       console.error("Login failed:", error);
     }
+    console.log(utilisateur.getUserId());
+  }, []);
+
+  async function login() {
+    utilisateur.startClient();
+
+    utilisateur.once('sync', function(state, prevState, res) {
+      console.log(state); // state will be 'PREPARED' when the client is ready to use
+  });
   }
 
-  //fonction pour room ID
 
-  /*
-  utilisateur.getRoom()
-  .then((rooms) => {
-    rooms.forEach((room) => {
-        console.log(room.roomId);
-    });
-    })
-    .catch((err) => {
-    console.error(err);
-    });
-    */
   async function getRoomId() {
     const roomAlias = "#room_alias:matrix.org";
 
@@ -59,7 +59,7 @@ export default function Matrix() {
 
   //fonction pour envoyer un message
 
-  const message = "Hello World!";
+  const message = "Hello World!!!!!!!!!!!!!!!!";
 
   async function sendMessage(message) {
     const roomId = await getRoomId();
@@ -129,8 +129,6 @@ export default function Matrix() {
   }
 
   function getRooms() {
-    utilisateur.startClient();
-
     utilisateur.once('sync', function(state, prevState, res) {
         console.log(state); // state will be 'PREPARED' when the client is ready to use
     });
@@ -141,13 +139,15 @@ export default function Matrix() {
       <View>
         <Text style={styles.container}>Matrix Server</Text>
         <Text>Token: {Token}</Text>
-        <Text>Room ID: </Text>
+        <Text>UserId: </Text>
+                  <Text>Room ID: </Text>
 
         <View style={styles.bouton}>
           <Button
             title="Login"
-            onPress={() => login(baseUrl, username, password)}
+            onPress={() => login()}
           />
+          <Button title="Send Message" onPress={() => sendMessage(message)} />
           <Button title="Receive Message" onPress={() => receiveMessage()} />
         </View>
         <Button title="Send Message Albert" onPress={() => sendMessageAlbert(message)} />
