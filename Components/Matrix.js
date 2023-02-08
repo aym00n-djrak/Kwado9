@@ -1,8 +1,7 @@
 import * as sdk from "matrix-js-sdk";
+
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import 'intl';
-import 'intl/locale-data/jsonp/en'
 
 export default function Matrix() {
   const baseUrl = "https://matrix.org";
