@@ -8,6 +8,8 @@ import { firebaseConfig } from './firebaseConfig';
 import  {useState} from 'react';
 import { signOut } from 'firebase/auth';
 import { useEffect } from 'react';
+import 'intl';
+import 'intl/locale-data/jsonp/en'
 import { useRoute } from '@react-navigation/native';
 import { TextAnimationFadeIn, TextAnimationZoom, TextAnimationRain, TextAnimationSlideDown, TextAnimationSlideUp, TextAnimationSlideLeft, TextAnimationSlideRight, TextAnimationShake, TextAnimationReverse, TextAnimationDeZoom } from 'react-native-text-effects';
 
