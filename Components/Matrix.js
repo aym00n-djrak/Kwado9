@@ -1,7 +1,7 @@
 import * as sdk from "matrix-js-sdk";
 
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { useEffect } from "react";
 
 export default function Matrix() {
@@ -9,6 +9,7 @@ export default function Matrix() {
   const username = "remyjova";
   const password = "remy9999.";
   const [Token, setToken] = React.useState("");
+  const [roomname, setRoomname] = React.useState("");
 
   const utilisateur = sdk.createClient({
     baseUrl: baseUrl,
@@ -66,17 +67,17 @@ export default function Matrix() {
     console.log(roomId.room_id);
     try {
       await utilisateur.sendEvent(
-        "!GTUBKeOukfhGfNMJui:matrix.org",
+        "!ABIpsggGZrpjvEpNwP:matrix.org",
         "m.room.message",
         {
           msgtype: "m.text",
           body: message,
         }
       );
-      console.log(`Message sent to room ${"!GTUBKeOukfhGfNMJui:matrix.org"}`);
+      console.log(`Message sent to room ${"!ABIpsggGZrpjvEpNwP:matrix.org"}`);
     } catch (error) {
       console.error(
-        `Error sending message to room ${"!GTUBKeOukfhGfNMJui:matrix.org"}: ${error}`
+        `Error sending message to room ${"!ABIpsggGZrpjvEpNwP:matrix.org"}: ${error}`
       );
     }
   }
@@ -129,10 +130,134 @@ export default function Matrix() {
   }
 
   function getRooms() {
-    utilisateur.once('sync', function(state, prevState, res) {
-        console.log(state); // state will be 'PREPARED' when the client is ready to use
+    var rooms = utilisateur.getRooms();
+    rooms.forEach(room => {
+        console.log(room.roomId);
     });
   }
+
+  function createRoom () {
+    utilisateur.createRoom({
+      visibility: "public",
+      room_alias_name: "wesperetremy789",
+      name: "Room Name",
+      topic: "Room Topic",
+      invite: ["@alice:example.org", "@bob:example.org"],
+      is_direct: true,
+      preset: "trusted_private_chat",
+      initial_state: [
+          {
+              type: "m.room.history_visibility",
+              content: {
+                  history_visibility: "joined"
+              }
+          }
+      ],
+      creation_content: {
+          "m.federate": false
+      }
+  }).then(function(room) {
+      console.log(`Created room ${room.roomId}`);
+  }).catch(function(err) {
+      console.error(`Error creating room ${err}`);
+  });
+  }
+
+  function joinRoom(roomname) {
+    utilisateur.joinRoom(roomname).then(function(room) {
+      console.log(`Joined room ${room.roomId}`);
+    }).catch(function(err) {
+      console.error(`Error joining room ${err}`);
+    });
+  }
+
+  function leaveRoom(roomname) {
+    utilisateur.leave(roomname).then(function() {
+      console.log(`Left room ${roomname}`);
+    }).catch(function(err) {
+      console.error(`Error leaving room ${err}`);
+    });
+  }
+
+  function showRoom(roomname) {
+    roomname= "!kMumRLTwVUMmyLDfwD:matrix.org"
+    const room = utilisateur.getRoom(roomname);
+    console.log(room);
+  }
+
+  function receiveMessageRoom(roomname) {
+    roomname= "!kMumRLTwVUMmyLDfwD:matrix.org"
+    const room = utilisateur.getRoom(roomname);
+    room.timeline.forEach((t) => {
+      console.log(t.event);
+    });
+  }
+
+  function getAllMess(){
+    utilisateur.on("Room.timeline", function(event, room, toStartOfTimeline) {
+      if(toStartOfTimeline) {
+        return;
+      }
+      if(event.getType() !== "m.room.message") {
+        return;
+      }
+      console.log(
+        "(%s) %s said: %s",
+        room.name,
+        event.getSender(),
+        event.getContent().body,
+      );
+    });
+
+    utilisateur.startClient();
+  }
+
+  function roomMessage(roomname) {
+    roomname= "!kMumRLTwVUMmyLDfwD:matrix.org"
+    utilisateur.on("Room.timeline", function(event, room, toStartOfTimeline) {
+      if(toStartOfTimeline) {
+        return;
+      }
+      if(event.getType() !== "m.room.message") {
+        return;
+      }
+      if(room.roomId == roomname){
+        console.log(
+          "(%s) %s said: %s",
+          room.name,
+          event.getSender(),
+          event.getContent().body,
+        );
+      }
+    });
+
+    utilisateur.startClient();
+  }
+
+  //another way to receive message
+
+  function getRoomId(roomname) {
+    roomname= "!kMumRLTwVUMmyLDfwD:matrix.org"
+    utilisateur.getRoomIdForAlias(roomname).then(function(roomId) {
+      console.log(roomId);
+    });
+  }
+
+  function receiveMessageRoom2(roomname) {
+    roomname= "!kMumRLTwVUMmyLDfwD:matrix.org"
+    utilisateur.scrollback(roomname).then(function(events) {
+      events.forEach(function(event) {
+        if (event.getType() === "m.room.message") {
+          console.log(event.getContent().body);
+        }
+      });
+    });
+  }
+
+  function stopClient() {
+    utilisateur.stopClient();
+  }
+
 
   return (
     <>
@@ -141,6 +266,7 @@ export default function Matrix() {
         <Text>Token: {Token}</Text>
         <Text>UserId: </Text>
                   <Text>Room ID: </Text>
+                  <TextInput style={styles.input} onChangeText={text => setRoomname(text)} value={roomname}></TextInput>
 
         <View style={styles.bouton}>
           <Button
@@ -152,7 +278,18 @@ export default function Matrix() {
         </View>
         <Button title="Send Message Albert" onPress={() => sendMessageAlbert(message)} />
         <Button title="Get Rooms" onPress={() => getRooms()} />
-      </View>
+        <Button title="Create Room" onPress={() => createRoom()} />
+        <Button title="Join Room" onPress={() => joinRoom(roomname)} />
+        <Button title="Leave Room" onPress={() => leaveRoom(roomname)} />
+        <Button title="Show Room" onPress={() => showRoom(roomname)} />
+        <Button title="Receive Message Room" onPress={() => receiveMessageRoom(roomname)} />
+        <Button title="Receive Message Room 2" onPress={() => receiveMessageRoom2(roomname)} />
+        <Button title="Get Room ID" onPress={() => getRoomId(roomname)} />
+
+        <Button title="Get All Messages" onPress={() => getAllMess()} />
+        <Button title="Room Message" onPress={() => roomMessage(roomname)} />
+        <Button title="Stop Client" onPress={() => stopClient()} />
+              </View>
     </>
   );
 }
@@ -169,6 +306,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     padding: 10,
-    marginTop: 500,
+    marginTop: 50,
   },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+  },
+
 });
