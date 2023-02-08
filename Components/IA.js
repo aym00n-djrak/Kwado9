@@ -7,11 +7,15 @@ import {
   View,
   Image,
   ActivityIndicator,
+  Button,
+  Alert,
 } from "react-native";
 import React from "react";
 import { Configuration, OpenAIApi } from "openai";
 import dalle2 from "../assets/dalle2.png";
 import meshgradient from "../assets/meshgradient.png";
+import * as MediaLibrary from 'expo-media-library';
+
 
 export default function Home() {
   const [prompt, onChangePrompt] = React.useState(
@@ -24,7 +28,7 @@ export default function Home() {
   );
 
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
@@ -45,6 +49,15 @@ export default function Home() {
       setLoading(false);
     }
   };
+
+      async function saveImage(result) {
+        //Medialibrary permission
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+        if (status === 'granted') {
+          Alert('Permission granted!');
+        }
+    }
+  
 
   return (
       <SafeAreaView>
@@ -95,6 +108,10 @@ export default function Home() {
             </>
           )}
         </View>
+
+        <TouchableOpacity style={styles.generateButton} onPress={() => saveImage(result)}>
+          <Text style={styles.generateButtonText}>Save</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -112,7 +129,6 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     fontWeight: "bold",
-    fontFamily: "Cochin",
     textAlign: "center",
   },
 

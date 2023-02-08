@@ -6,9 +6,9 @@ import { useEffect } from "react";
 import { sendSMSAsync } from "expo-sms";
 
 export default function Matrix() {
-  const baseUrl = "https://matrix.org";
-  const username = "remyjova";
-  const password = "remy9999.";
+  const baseUrl = "https://matrix.kwado9.fr";
+  const username = "remy2";
+  const password = ".[&3^AHWz(,u";
   const [Token, setToken] = React.useState("");
   const [roomname, setRoomname] = React.useState(
     "!ABIpsggGZrpjvEpNwP:matrix.org"
@@ -24,7 +24,7 @@ export default function Matrix() {
   const utilisateur = sdk.createClient({
     baseUrl: baseUrl,
     accessToken: Token,
-    userId: "@remyjova:matrix.org",
+    userId: "@remy2:kwado9.fr",
   });
 
   async function token() {
