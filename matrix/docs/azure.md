@@ -31,7 +31,7 @@ Vous pouvez ensuite suivre les captures d'écran si-dessous pour configurer votr
 
 ![de base bottom](./images/de-base-bottom.png)
 
-![disques](./images/\disques.png)
+![disques](./images/disques.png)
 
 ![mise en reseau](./images/mise-en-reseau.png)
 
