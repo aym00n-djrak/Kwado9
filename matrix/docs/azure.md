@@ -21,21 +21,21 @@ Dans le portail, créez une ressource en appuyant sur [créer une ressource](htt
 
 Puis cliquer sur [Ubuntu Server 22.04 LTS](https://portal.azure.com/#create/canonical.0001-com-ubuntu-server-jammy22_04-lts-gen2)
 
-![ubuntu button](.\images\ubuntu-22-04-LTS.png)
+![ubuntu button](./images/ubuntu-22-04-LTS.png)
 
 Puis sélectionner l'abonnement correspondant à l'offre utilisée pour la création de votre profil, et créez un nouveau groupe de ressource.  
 
 Vous pouvez ensuite suivre les captures d'écran si-dessous pour configurer votre serveur, pensez à copier votre **nom d'utilisateur** et **mot de passe** SSH.
 
-![de base top](.\images\de-base-top.png)
+![de base top](./images/de-base-top.png)
 
-![de base bottom](.\images\de-base-bottom.png)
+![de base bottom](./images/de-base-bottom.png)
 
-![disques](.\images\disques.png)
+![disques](./images/\disques.png)
 
-![mise en reseau](.\images\mise-en-reseau.png)
+![mise en reseau](./images/mise-en-reseau.png)
 
-![administration](.\images\administration.png)
+![administration](./images/administration.png)
 
 Les onglets Monitoring, Paramètres avancés et étiquettes n'ont pas besoin d'être modifiés, vous pouvez maintenant directement cliquer sur vérifier + créer.
 
