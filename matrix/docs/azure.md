@@ -27,11 +27,9 @@ Puis sélectionner l'abonnement correspondant à l'offre utilisée pour la créa
 
 Vous pouvez ensuite suivre les captures d'écran si-dessous pour configurer votre serveur, pensez à copier votre **nom d'utilisateur** et **mot de passe** SSH.
 
-//SCREENSHOTS
+![de base top](.\images\de-base-top.png)
 
-![de base top](.\images\creer-de-base-top.png)
-
-![de base bottom](.\images\creer-de-base-bottom.png)
+![de base bottom](.\images\de-base-bottom.png)
 
 ![disques](.\images\disques.png)
 
