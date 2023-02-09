@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import React from "react";
 import { Configuration, OpenAIApi } from "openai";
-// inspiré de : https://products.ls.graphics/mesh-gradients/
+// inspirï¿½ de : https://products.ls.graphics/mesh-gradients/
 
 
 
@@ -24,7 +24,7 @@ export default function IAtext() {
   const [text, setText] = React.useState("Your AI assistant");
 
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);

@@ -1,4 +1,4 @@
-//inspiré de : // et de : https://products.ls.graphics/mesh-gradients/
+//inspirï¿½ de : // et de : https://products.ls.graphics/mesh-gradients/
 
 
 import * as sdk from "matrix-js-sdk";
@@ -9,17 +9,30 @@ import { useEffect } from "react";
 import { sendSMSAsync } from "expo-sms";
 import { TouchableOpacity } from "react-native";
 import { TextAnimationSlideDown } from 'react-native-text-effects';
+import { ScrollView } from "react-native";
+import { sleep } from "matrix-js-sdk/lib/utils";
+import { writeAsStringAsync } from "expo-file-system";
+
+
+const RoomButton = ({ roomName, onPress }) => (
+  <Button title={roomName} onPress={onPress} />
+);
 
 export default function Matrix() {
   const baseUrl = "https://matrix.kwado9.fr";
   const username = "remy2";
   const password = ".[&3^AHWz(,u";
   const [Token, setToken] = React.useState("");
-  const [roomname, setRoomname] = React.useState(
-    "!ABIpsggGZrpjvEpNwP:matrix.org"
-  );
+  const [roomname, setRoomname] = React.useState([]);
+  const [rooms, setRooms] = React.useState([]);
 
-  //creer list de room pour stocker id et nom
+
+  useEffect(() => {
+
+
+    
+    login();
+  }, []);
 
   const [roomlist, setRoomlist] = React.useState([]);
 
@@ -53,7 +66,21 @@ export default function Matrix() {
   }
 
   async function login() {
-    utilisateur.startClient();
+    token();
+    if (Token != "") {
+      //attendre que le token soit charg
+      await sleep(1000);
+      getAllMess();
+      await sleep(1000);
+      //charger les rooms
+      const roomsData  = await utilisateur.getRooms();
+      setRooms(roomsData);
+      //afficher les rooms
+      console.log(rooms.length);
+    }
+    else {
+      console.log("token vide");
+  }
   }
 
   async function getRoomId() {
@@ -68,40 +95,20 @@ export default function Matrix() {
     }
   }
 
-  //fonction pour envoyer un message
-
-  async function sendMessage(message) {
-    try {
-      await utilisateur.sendEvent(
-        "!ABIpsggGZrpjvEpNwP:matrix.org",
-        "m.room.message",
-        {
-          msgtype: "m.text",
-          body: message,
-        }
-      );
-      console.log(`Message sent to room ${"!ABIpsggGZrpjvEpNwP:matrix.org"}`);
-    } catch (error) {
-      console.error(
-        `Error sending message to room ${"!ABIpsggGZrpjvEpNwP:matrix.org"}: ${error}`
-      );
-    }
-  }
-
   async function sendMessageAlbert(message) {
     try {
       await utilisateur.sendEvent(
-        "!kMumRLTwVUMmyLDfwD:matrix.org",
+        "!yMjxKWHBCnwXGKwgUU:kwado9.fr",
         "m.room.message",
         {
           msgtype: "m.text",
           body: message,
         }
       );
-      console.log(`Message sent to room ${"!kMumRLTwVUMmyLDfwD:matrix.org"}`);
+      console.log(`Message sent to room ${"!yMjxKWHBCnwXGKwgUU:kwado9.fr"}`);
     } catch (error) {
       console.error(
-        `Error sending message to room ${"!kMumRLTwVUMmyLDfwD:matrix.org"}: ${error}`
+        `Error sending message to room ${"!yMjxKWHBCnwXGKwgUU:kwado9.fr"}: ${error}`
       );
     }
   }
@@ -118,32 +125,6 @@ export default function Matrix() {
     }
   }
 
-  //fonction pour recevoir un message
-
-  async function receiveMessage() {
-    const roomId = await getRoomId();
-
-    try {
-      const messages = await utilisateur.getSyncState({
-        roomId: "!GTUBKeOukfhGfNMJui:matrix.org",
-      });
-      console.log(messages);
-    } catch (error) {
-      console.error(
-        `Error receiving message from room ${roomId.room_id}: ${error}`
-      );
-    }
-  }
-
-  //fonction pour afficher tous les messages
-
-  function getAllMessages() {
-    Object.keys(utilisateur.store.rooms).forEach((roomId) => {
-      utilisateur.getRoom(roomId).timeline.forEach((t) => {
-        console.log(t.event);
-      });
-    });
-  }
 
   function getRooms() {
     var rooms = utilisateur.getRooms();
@@ -154,7 +135,6 @@ export default function Matrix() {
       roomlist.push({ id: room.roomId, name: room.name });
       console.log(roomlist);
     });
-    //lorsque l'on a fini de parcourir la liste on ferme le client
   }
 
   function createRoom() {
@@ -210,17 +190,25 @@ export default function Matrix() {
   }
 
   function showRoom(roomname) {
-    roomname = "!kMumRLTwVUMmyLDfwD:matrix.org";
     const room = utilisateur.getRoom(roomname);
     console.log(room);
   }
 
   function receiveMessageRoom(roomname) {
-    roomname = "!kMumRLTwVUMmyLDfwD:matrix.org";
-    const room = utilisateur.getRoom(roomname);
-    room.timeline.forEach((t) => {
-      console.log(t.event);
+    utilisateur.on("Room.timeline", function (event, room, toStartOfTimeline) {
+      if (toStartOfTimeline) {
+        return;
+      }
+      if (event.getType() !== "m.room.message") {
+        return;
+      }
+
+      if (event.getRoomId() === roomname && event.getContent().body[0] === '!') {
+        sendNotice(event.event.content.body);
+    }
     });
+
+    utilisateur.startClient();
   }
 
   function getAllMess() {
@@ -242,8 +230,12 @@ export default function Matrix() {
     utilisateur.startClient();
   }
 
+  function getRoomMess(){
+
+
+  }
+
   function roomMessage(roomname) {
-    roomname = "!kMumRLTwVUMmyLDfwD:matrix.org";
     utilisateur.on("Room.timeline", function (event, room, toStartOfTimeline) {
       if (toStartOfTimeline) {
         return;
@@ -281,11 +273,6 @@ export default function Matrix() {
                   color: '#5f9ea0', fontSize: 40, fontWeight: 'bold'
               }} />
               <Text style={styles.normalText}>Token: {Token}</Text>
-              <View style={styles.bouton}>
-                  <TouchableOpacity onPress={() => token()}>
-                      <Text style={styles.normalBouton}>Sync Token</Text>
-                  </TouchableOpacity>
-                  </View>
               <Text style={styles.normalText}>Room ID: </Text>
         <TextInput
           style={styles.input}
@@ -305,17 +292,7 @@ export default function Matrix() {
           value={message}
         ></TextInput>
         <View style={styles.bouton}>
-                  <TouchableOpacity onPress={() => login()}>
-                      <Text style={styles.normalBouton}>Login</Text>
-                  </TouchableOpacity>
 
-                  <TouchableOpacity onPress={() => sendMessage(message)}>
-                      <Text style={styles.normalBouton}>Send Message</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => receiveMessage()}>
-                      <Text style={styles.normalBouton}>Receive Message</Text>
-                  </TouchableOpacity>
 
         </View>
 
@@ -372,19 +349,6 @@ export default function Matrix() {
                 />
             );
           })}
-
-
-          {roomlist.map((room) => {
-            return (
-              <Button
-                title={room.name}
-                onPress={() => receiveMessageRoom(room.roomId)}
-              />
-            );
-          })
-
-          }
-
         </View>
         <View style={styles.bouton}>
 
@@ -403,6 +367,13 @@ export default function Matrix() {
                   </TouchableOpacity>
         </View>
       </View>
+
+      <ScrollView>
+      {roomlist.map((room, index) => (
+        <RoomButton key={index} roomName={room.name} onPress={() => console.log('Pressed room:', room.name, setRoomname(room.id))} />
+      ))}
+      </ScrollView>
+
     </>
   );
 }
