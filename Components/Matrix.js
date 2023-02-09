@@ -1,9 +1,14 @@
+//inspiré de : // et de : https://products.ls.graphics/mesh-gradients/
+
+
 import * as sdk from "matrix-js-sdk";
 
 import React from "react";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput, Image } from "react-native";
 import { useEffect } from "react";
 import { sendSMSAsync } from "expo-sms";
+import { TouchableOpacity } from "react-native";
+import { TextAnimationSlideDown } from 'react-native-text-effects';
 
 export default function Matrix() {
   const baseUrl = "https://matrix.kwado9.fr";
@@ -266,65 +271,96 @@ export default function Matrix() {
   }
 
   return (
-    <>
-      <View>
-        <Text style={styles.container}>Matrix Server</Text>
-        <Text>Token: {Token}</Text>
-        <View style={styles.bouton}>
-          <Button
-            style={styles.bouton}
-            title="Sync Token"
-            onPress={() => token()}
-          />
-        </View>
-        <Text>Room ID: </Text>
+      <>
+          <View>
+              <Image
+                  source={{ uri: 'https://products.ls.graphics/mesh-gradients/images/18.-Buttercup_1.jpg' }}
+                  style={styles.background}
+              />
+              <TextAnimationSlideDown value={"Matrix server"} delay={50} duration={500} useNativeDriver={true} style={{
+                  color: '#5f9ea0', fontSize: 40, fontWeight: 'bold'
+              }} />
+              <Text style={styles.normalText}>Token: {Token}</Text>
+              <View style={styles.bouton}>
+                  <TouchableOpacity onPress={() => token()}>
+                      <Text style={styles.normalBouton}>Sync Token</Text>
+                  </TouchableOpacity>
+                  </View>
+              <Text style={styles.normalText}>Room ID: </Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setRoomname(text)}
           value={roomname}
         ></TextInput>
-        <Text>Room Alias: </Text>
+              <Text style={styles.normalText}>Room Alias: </Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setRoomalias(text)}
           value={roomalias}
         ></TextInput>
-        <Text>Message: </Text>
+              <Text style={styles.normalText}>Message: </Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setMessage(text)}
           value={message}
         ></TextInput>
         <View style={styles.bouton}>
-          <Button title="Login" onPress={() => login()} />
-          <Button title="Send Message" onPress={() => sendMessage(message)} />
-          <Button title="Receive Message" onPress={() => receiveMessage()} />
+                  <TouchableOpacity onPress={() => login()}>
+                      <Text style={styles.normalBouton}>Login</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => sendMessage(message)}>
+                      <Text style={styles.normalBouton}>Send Message</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => receiveMessage()}>
+                      <Text style={styles.normalBouton}>Receive Message</Text>
+                  </TouchableOpacity>
+
         </View>
 
         <View style={styles.bouton}>
-          <Button
-            title="Send message room"
-            onPress={() => sendMess(message, roomname)}
-          />
-          <Button
-            title="Send Message Albert"
-            onPress={() => sendMessageAlbert(message)}
-          />
+
+                  <TouchableOpacity onPress={() => sendMess(message, roomname)}>
+                      <Text style={styles.normalBouton}>Send message room</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => sendMessageAlbert(message)}>
+                      <Text style={styles.normalBouton}>Send Message Albert</Text>
+                  </TouchableOpacity>
+
         </View>
         <View style={styles.bouton}>
-          <Button title="Get Rooms" onPress={() => getRooms()} />
-          <Button title="Create Room" onPress={() => createRoom()} />
+
+                  <TouchableOpacity onPress={() => getRooms()}>
+                      <Text style={styles.normalBouton}>Get Rooms</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => createRoom()}>
+                      <Text style={styles.normalBouton}>Create Room</Text>
+                  </TouchableOpacity>
+
         </View>
         <View style={styles.bouton}>
-          <Button title="Join Room" onPress={() => joinRoom(roomname)} />
-          <Button title="Leave Room" onPress={() => leaveRoom(roomname)} />
-          <Button title="Show Room" onPress={() => showRoom(roomname)} />
+
+                  <TouchableOpacity onPress={() => joinRoom(roomname)}>
+                      <Text style={styles.normalBouton}>Join Room</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => leaveRoom(roomname)}>
+                      <Text style={styles.normalBouton}>Leave Room</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => showRoom(roomname)}>
+                      <Text style={styles.normalBouton}>Show Room</Text>
+                  </TouchableOpacity>
+
         </View>
         <View style={styles.bouton}>
-          <Button
-            title="Receive Message Room"
-            onPress={() => receiveMessageRoom(roomname)}
-          />
+
+                  <TouchableOpacity onPress={() => receiveMessageRoom(roomname)}>
+                      <Text style={styles.normalBouton}>Receive Message Room</Text>
+                  </TouchableOpacity>
 
           {Object.keys(utilisateur.store.rooms).map((key) => {
             return (
@@ -333,7 +369,7 @@ export default function Matrix() {
                 onPress={() =>
                   receiveMessageRoom(utilisateur.store.rooms[key].roomId)
                 }
-              />
+                />
             );
           })}
 
@@ -351,11 +387,20 @@ export default function Matrix() {
 
         </View>
         <View style={styles.bouton}>
-          <Button title="Get All Messages" onPress={() => getAllMess()} />
+
+                  <TouchableOpacity onPress={() => getAllMess()}>
+                      <Text style={styles.normalBouton}>Get All Messages</Text>
+                  </TouchableOpacity>
+
         </View>
         <View style={styles.bouton}>
-          <Button title="Room Message" onPress={() => roomMessage(roomname)} />
-          <Button title="Stop Client" onPress={() => stopClient()} />
+                  <TouchableOpacity onPress={() => roomMessage(roomname)}>
+                      <Text style={styles.normalBouton}>Room Message</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => stopClient()}>
+                      <Text style={styles.normalBouton}>Stop Client</Text>
+                  </TouchableOpacity>
         </View>
       </View>
     </>
@@ -364,20 +409,48 @@ export default function Matrix() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    fontWeight: "bold",
+        backgroundColor: "transparent",
   },
   bouton: {
-    padding: 10,
+    padding: 4,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
+    //alignItems: "center",
   },
   input: {
     height: 40,
-    margin: 12,
-    borderWidth: 1,
-  },
+      borderWidth: 2,
+      width: 300,
+      borderColor: "#00ced1",
+      borderRadius: 17,
+      marginLeft: 15,
+      opacity: 0.7,
+      padding: 4,
+      fontSize: 12
+    },
+    background: {
+        height: 400,
+        margin: 300,
+        position: 'absolute'
+    },
+    normalBouton: {
+        fontWeight: "bold",
+        fontSize: 15,
+        padding: 5,
+        color: "#0000cd",
+        borderColor: "#20b2aa",
+        borderRadius: 10,
+        borderWidth: 0.7,
+        backgroundColor: "#66cdaa",
+        opacity: 0.68,
+        textShadowColor: "#black", textShadowOffset: { width: -2, height: 2 },
+        textShadowRadius: 10,
+        marginTop: 2
+    },
+    normalText: {
+        fontSize: 15,
+        fontWeight: "bold",
+        marginLeft: 15,
+        color: "#800080"
+    }
 });
