@@ -67,6 +67,15 @@ Name:    exemple.fr
 Address: 1.2.3.4
 ```
 
+```powershell
+Server:  UnKnown
+Address:  192.168.0.254
+
+Non-authoritative answer:
+Name:    matrix.exemple.fr
+Address: 1.2.3.4
+```
+
 Vous devriez obtenir les résultats suivants pour les deux dernières commandes:
 
 ```powershell

@@ -16,6 +16,7 @@ WSL nous permettra aussi d'utiliser les outils linux nécessaires à la configur
 2. Cochez les cases suivantes :
   - Platefome de machine virtuelle
   - Sous-système Windows pour Linux
+
 ![fonctionnalités windows](./images/fonctionalites.png)
 
 Cliquez sur OK pour valider, puis redémarrez votre ordinateur.
