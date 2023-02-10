@@ -157,7 +157,7 @@ Votre serveur est maintenant opérationnel !
 
 ## Utilisation
 
-1. Créez un compte utilisateur en tapant la commande suivante dans le terminal d'Ubuntu :
+1. Créez un compte utilisateur en tapant la commande suivante dans le conteneur Ansible :
 
 (remplacez `user` par votre nom d'utilisateur, `password` par votre mot de passe et `no` par `yes` si vous souhaitez que votre compte soit administrateur)
 
