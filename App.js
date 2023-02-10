@@ -21,9 +21,6 @@ import { signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { TextAnimationShake } from "react-native-text-effects";
 
-import "intl";
-import "intl/locale-data/jsonp/fr";
-
 import "react-native-url-polyfill/auto";
 
 //sources: https://products.ls.graphics/mesh-gradients/

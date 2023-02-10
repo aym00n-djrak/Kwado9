@@ -7,23 +7,11 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  Alert,
-  Button,
-  TouchableWithoutFeedback,
   Animated,
 } from "react-native";
 import skull from "../assets/skull.png";
 import {
   TextAnimationFadeIn,
-  TextAnimationZoom,
-  TextAnimationRain,
-  TextAnimationSlideDown,
-  TextAnimationSlideUp,
-  TextAnimationSlideLeft,
-  TextAnimationSlideRight,
-  TextAnimationShake,
-  TextAnimationReverse,
-  TextAnimationDeZoom,
 } from "react-native-text-effects";
 
 import { LinearGradient } from "expo-linear-gradient";
