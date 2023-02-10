@@ -157,4 +157,14 @@ To see these additional updates run: apt list --upgradable
 Last login: Thu Feb  9 10:11:16 2023 from 
 ```
 
+Puis, Fermez la connexion SSH en tapant ```exit```. 
+
+10. Restreignez les permissions du fichier de clé privée sur votre machine en tapant la commande suivante :
+
+```bash
+chmod 600 ~/.ssh/id_rsa
+```
+
+Cela permet d'empêcher que votre clé privée soit lue par d'autres utilisateurs.
+
 La configuration de votre Windows est terminée. Vous pouvez maintenant passer à l'étape suivante.
