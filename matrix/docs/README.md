@@ -148,7 +148,9 @@ Cette commande va installer et configurer votre serveur. Cela peut prendre un ce
 14. Vérifiez que votre serveur est bien en ligne en y accédant depuis votre navigateur en tapant les adresses suivantes :
 
 https://example.fr pour accéder à la page d'acceuil du serveur nginx
+
 https://matrix.example.fr pour accéder à la page d'acceuil de votre serveur Matrix
+
 https://element.example.fr pour accéder à la page d'acceuil de votre client web Element
 
 Votre serveur est maintenant opérationnel !
