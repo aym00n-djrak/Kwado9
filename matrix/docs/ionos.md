@@ -43,11 +43,11 @@ Votre serveur Azure ne dispose pas d'adresse IPv6, il faut donc supprimer les en
 
 ## Test de votre configuration
 
-Pour tester votre configuration, il vous suffit de taper les commandes suivantes dans un terminal:
+Pour tester votre configuration, il vous suffit de taper les commandes suivantes dans un terminal powershell:
 
 (en remplaçant 'exemple.fr' par votre nom de domaine)
 
-```bash
+```powershell
 nslookup exemple.fr
 nslookup matrix.exemple.fr
 nslookup element.exemple.fr
@@ -58,9 +58,9 @@ Vous devriez obtenir les résultats suivants pour les deux premières commandes:
 
 (avec votre adresse IP à la place de '1.2.3.4' et votre nom de domaine à la place de 'exemple.fr')
 
-```bash
-Server:  <Ionos DNS address>
-Address:  <Ionos DNS address>#53
+```powershell
+Server:  UnKnown
+Address:  192.168.0.254
 
 Non-authoritative answer:
 Name:    exemple.fr
@@ -69,24 +69,24 @@ Address: 1.2.3.4
 
 Vous devriez obtenir les résultats suivants pour les deux dernières commandes:
 
-```bash
-Server:  <Ionos DNS address>
-Address:  <Ionos DNS address>#53
+```powershell
+Server:  UnKnown
+Address:  192.168.0.254
 
 Non-authoritative answer:
-Name:    element.exemple.fr canonical name = exemple.fr
 Name:    exemple.fr
 Address: 1.2.3.4
+Aliases:  element.exemple.fr
 ```
 
-```bash
-Server:  <Ionos DNS address>
-Address:  <Ionos DNS address>#53
+```powershell
+Server:  UnKnown
+Address:  192.168.0.254
 
 Non-authoritative answer:
-Name:    stats.exemple.fr canonical name = exemple.fr
 Name:    exemple.fr
 Address: 1.2.3.4
+Aliases:  stats.exemple.fr
 ```
 
 Si vous obtenez ces résultats, votre configuration est correcte, vous pouvez donc passer à l'étape suivante.
