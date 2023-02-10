@@ -56,5 +56,104 @@ sudo apt install git pwgen -y
 
 3. Sur Windows, installer [Visual Studio Code](https://code.visualstudio.com/)
 
+## Configuration SSH
+
+Ansible utilise SSH pour se connecter aux serveurs à configurer. Pour pouvoir utiliser Ansible depuis Ubuntu, nous devons utiliser une clé SSH. Nous allons donc remplacer l'authentification par mot de passe par l'authentification par clé SSH.
+
+1. Ouvrez Ubuntu depuis le menu démarrer.
+
+2. Générez une clé SSH en tapant la commande suivante dans le terminal d'Ubuntu :
+
+Appuyez sur Entrée à chaque question pour appliquer les valeurs par défaut. (n'entrez pas de passphrase)
+
+```bash
+ssh-keygen -t rsa -b 2048
+```
+
+Vérifiez que la clé a bien été générée en tapant la commande suivante :
+
+```bash
+ls -al ~/.ssh
+```
+
+Vous devriez voir une clé nommée `id_rsa` et une clé nommée `id_rsa.pub`.
+
+Remplacez `user` par votre nom d'utilisateur et `1.2.3.4` par l'adresse IP de votre serveur dans les commandes suivantes.
+
+3. Copiez la clé publique sur le serveur en tapant la commande suivante :
+
+```bash
+scp ~/.ssh/id_rsa.pub user@1.2.3.4:
+```
+
+4. Connectez-vous au serveur en tapant la commande suivante :
+
+```bash
+ssh user@1.2.3.4
+```
+
+5. Ajoutez la clé publique à la liste des clés autorisées en tapant la commande suivante :
+
+```bash
+cat id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+6. Editez le fichier de configuration SSH en tapant la commande suivante :
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Vérifiez que les lignes suivantes sont présentes et qu'elles sont correctes :
+
+```bash
+PubkeyAuthentication yes
+RSAAuthentication yes
+```
+
+Si ce n'est pas le cas, ajoutez les lignes manquantes et modifiez les lignes incorrectes. Sauvegardez et quittez le fichier en appuyant sur `Ctrl + X`, puis `Y` puis `Entrée`.
+
+7. Redémarrez le service SSH en tapant la commande suivante :
+
+```bash
+sudo service ssh restart
+```
+
+8. Déconnectez-vous du serveur en tapant la commande suivante :
+
+```bash
+exit
+```
+
+9. Testez la connexion SSH en tapant la commande suivante :
+
+```bash
+ssh user@1.2.3.4
+```
+
+Vous devriez voir le message suivant :
+
+```bash
+Welcome to Ubuntu 22.04.1 LTS (GNU/Linux 5.15.0-1031-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Feb 10 13:14:52 UTC 2023
+
+  System load:  0.0                Users logged in:                  0
+  Usage of /:   25.9% of 28.89GB   IPv4 address for br-20d24e764b41: 
+  Memory usage: 36%                IPv4 address for br-ca6d16b270d6: 
+  Swap usage:   0%                 IPv4 address for docker0:         
+  Processes:    246                IPv4 address for eth0:            
+
+11 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
 
 
+*** System restart required ***
+Last login: Thu Feb  9 10:11:16 2023 from 
+```
+
+La configuration de votre Windows est terminée. Vous pouvez maintenant passer à l'étape suivante.
