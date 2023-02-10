@@ -1,6 +1,5 @@
 //inspir� de : // et de : https://products.ls.graphics/mesh-gradients/
 
-
 import * as sdk from "matrix-js-sdk";
 
 import React from "react";
@@ -8,80 +7,37 @@ import { View, Text, StyleSheet, Button, TextInput, Image } from "react-native";
 import { useEffect } from "react";
 import { sendSMSAsync } from "expo-sms";
 import { TouchableOpacity } from "react-native";
-import { TextAnimationSlideDown } from 'react-native-text-effects';
+import { TextAnimationSlideDown } from "react-native-text-effects";
 import { ScrollView } from "react-native";
-import { sleep } from "matrix-js-sdk/lib/utils";
-import { writeAsStringAsync } from "expo-file-system";
-
+import { useRoute } from "@react-navigation/native";
 
 const RoomButton = ({ roomName, onPress }) => (
   <Button title={roomName} onPress={onPress} />
 );
 
-export default function Matrix() {
-  const baseUrl = "https://matrix.kwado9.fr";
-  const username = "remy2";
-  const password = ".[&3^AHWz(,u";
-  const [Token, setToken] = React.useState("");
+export default function Matrix({ navigation }) {
+  const route = useRoute();
+  const utilisateur = route.params?.utilisateur;
+
   const [roomname, setRoomname] = React.useState([]);
-  const [rooms, setRooms] = React.useState([]);
-
-
-  useEffect(() => {
-
-
-    
-    login();
-  }, []);
-
-  const [roomlist, setRoomlist] = React.useState([]);
-
   const [roomalias, setRoomalias] = React.useState("");
   const [message, setMessage] = React.useState("Hello World");
+  const [state, setState] = React.useState(null);
+  const [rooms, setRooms] = React.useState([]);
 
-  const utilisateur = sdk.createClient({
-    baseUrl: baseUrl,
-    accessToken: Token,
-    userId: "@remy2:kwado9.fr",
-  });
-
-  async function token() {
-    const client = sdk.createClient({
-      baseUrl: baseUrl,
+  useEffect(() => {
+    utilisateur.startClient();
+    utilisateur.once("sync", function (state, prevState, res) {
+      if (state === "PREPARED") {
+        setState(state);
+        console.log("Matrix client started and ready!");
+        setRooms(utilisateur.getRooms());
+      }
     });
-    try {
-      const response = await client.login("m.login.password", {
-        user: username,
-        password: password,
-      });
-      const accessToken = response.access_token;
-      setToken(accessToken);
-      console.log("Login successful, access token:", accessToken);
-
-      return accessToken;
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-    console.log(utilisateur.getUserId());
-  }
-
-  async function login() {
-    token();
-    if (Token != "") {
-      //attendre que le token soit charg
-      await sleep(1000);
-      getAllMess();
-      await sleep(1000);
-      //charger les rooms
-      const roomsData  = await utilisateur.getRooms();
-      setRooms(roomsData);
-      //afficher les rooms
-      console.log(rooms.length);
-    }
-    else {
-      console.log("token vide");
-  }
-  }
+    return () => {
+      utilisateur.stopClient();
+    };
+  }, []);
 
   async function getRoomId() {
     const roomAlias = "#room_alias:matrix.org";
@@ -92,24 +48,6 @@ export default function Matrix() {
     } catch (error) {
       console.error(`Error getting room ID for alias ${roomAlias}: ${error}`);
       return null;
-    }
-  }
-
-  async function sendMessageAlbert(message) {
-    try {
-      await utilisateur.sendEvent(
-        "!yMjxKWHBCnwXGKwgUU:kwado9.fr",
-        "m.room.message",
-        {
-          msgtype: "m.text",
-          body: message,
-        }
-      );
-      console.log(`Message sent to room ${"!yMjxKWHBCnwXGKwgUU:kwado9.fr"}`);
-    } catch (error) {
-      console.error(
-        `Error sending message to room ${"!yMjxKWHBCnwXGKwgUU:kwado9.fr"}: ${error}`
-      );
     }
   }
 
@@ -124,7 +62,6 @@ export default function Matrix() {
       console.error(`Error sending message to room ${roomname}: ${error}`);
     }
   }
-
 
   function getRooms() {
     var rooms = utilisateur.getRooms();
@@ -203,9 +140,12 @@ export default function Matrix() {
         return;
       }
 
-      if (event.getRoomId() === roomname && event.getContent().body[0] === '!') {
+      if (
+        event.getRoomId() === roomname &&
+        event.getContent().body[0] === "!"
+      ) {
         sendNotice(event.event.content.body);
-    }
+      }
     });
 
     utilisateur.startClient();
@@ -230,10 +170,7 @@ export default function Matrix() {
     utilisateur.startClient();
   }
 
-  function getRoomMess(){
-
-
-  }
+  function getRoomMess() {}
 
   function roomMessage(roomname) {
     utilisateur.on("Room.timeline", function (event, room, toStartOfTimeline) {
@@ -262,125 +199,62 @@ export default function Matrix() {
     utilisateur.stopClient();
   }
 
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const filteredRooms = rooms.filter((room) =>
+    room.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-      <>
-          <View>
-              <Image
-                  source={{ uri: 'https://products.ls.graphics/mesh-gradients/images/18.-Buttercup_1.jpg' }}
-                  style={styles.background}
-              />
-              <TextAnimationSlideDown value={"Matrix server"} delay={50} duration={500} useNativeDriver={true} style={{
-                  color: '#5f9ea0', fontSize: 40, fontWeight: 'bold'
-              }} />
-              <Text style={styles.normalText}>Token: {Token}</Text>
-              <Text style={styles.normalText}>Room ID: </Text>
+    <>
+      <View style={styles.container}>
+        <Image
+          source={{
+            uri: "https://products.ls.graphics/mesh-gradients/images/18.-Buttercup_1.jpg",
+          }}
+          style={styles.background}
+        />
+        <TextAnimationSlideDown
+          value={"Matrix server"}
+          delay={50}
+          duration={500}
+          useNativeDriver={true}
+          style={{
+            color: "#5f9ea0",
+            fontSize: 40,
+            fontWeight: "bold",
+          }}
+        />
         <TextInput
-          style={styles.input}
-          onChangeText={(text) => setRoomname(text)}
-          value={roomname}
-        ></TextInput>
-              <Text style={styles.normalText}>Room Alias: </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setRoomalias(text)}
-          value={roomalias}
-        ></TextInput>
-              <Text style={styles.normalText}>Message: </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setMessage(text)}
-          value={message}
-        ></TextInput>
-        <View style={styles.bouton}>
-
-
-        </View>
-
-        <View style={styles.bouton}>
-
-                  <TouchableOpacity onPress={() => sendMess(message, roomname)}>
-                      <Text style={styles.normalBouton}>Send message room</Text>
+          style={styles.searchInput}
+          placeholder="Rechercher une salle..."
+          onChangeText={(term) => setSearchTerm(term)}
+          value={searchTerm}
+        />
+        <ScrollView>
+          {state === "PREPARED" &&
+            filteredRooms.map((room) => {
+              return (
+                <View key={room.roomId} style={styles.bouton}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("RoomMatrix", { room: room })
+                    }
+                  >
+                    <Text style={styles.normalBouton}>{room.name}</Text>
                   </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => sendMessageAlbert(message)}>
-                      <Text style={styles.normalBouton}>Send Message Albert</Text>
-                  </TouchableOpacity>
-
-        </View>
-        <View style={styles.bouton}>
-
-                  <TouchableOpacity onPress={() => getRooms()}>
-                      <Text style={styles.normalBouton}>Get Rooms</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => createRoom()}>
-                      <Text style={styles.normalBouton}>Create Room</Text>
-                  </TouchableOpacity>
-
-        </View>
-        <View style={styles.bouton}>
-
-                  <TouchableOpacity onPress={() => joinRoom(roomname)}>
-                      <Text style={styles.normalBouton}>Join Room</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => leaveRoom(roomname)}>
-                      <Text style={styles.normalBouton}>Leave Room</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => showRoom(roomname)}>
-                      <Text style={styles.normalBouton}>Show Room</Text>
-                  </TouchableOpacity>
-
-        </View>
-        <View style={styles.bouton}>
-
-                  <TouchableOpacity onPress={() => receiveMessageRoom(roomname)}>
-                      <Text style={styles.normalBouton}>Receive Message Room</Text>
-                  </TouchableOpacity>
-
-          {Object.keys(utilisateur.store.rooms).map((key) => {
-            return (
-              <Button
-                title={utilisateur.store.rooms[key].name}
-                onPress={() =>
-                  receiveMessageRoom(utilisateur.store.rooms[key].roomId)
-                }
-                />
-            );
-          })}
-        </View>
-        <View style={styles.bouton}>
-
-                  <TouchableOpacity onPress={() => getAllMess()}>
-                      <Text style={styles.normalBouton}>Get All Messages</Text>
-                  </TouchableOpacity>
-
-        </View>
-        <View style={styles.bouton}>
-                  <TouchableOpacity onPress={() => roomMessage(roomname)}>
-                      <Text style={styles.normalBouton}>Room Message</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => stopClient()}>
-                      <Text style={styles.normalBouton}>Stop Client</Text>
-                  </TouchableOpacity>
-        </View>
+                </View>
+              );
+            })}
+        </ScrollView>
       </View>
-
-      <ScrollView>
-      {roomlist.map((room, index) => (
-        <RoomButton key={index} roomName={room.name} onPress={() => console.log('Pressed room:', room.name, setRoomname(room.id))} />
-      ))}
-      </ScrollView>
-
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-        backgroundColor: "transparent",
+    backgroundColor: "transparent",
   },
   bouton: {
     padding: 4,
@@ -390,38 +264,50 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-      borderWidth: 2,
-      width: 300,
-      borderColor: "#00ced1",
-      borderRadius: 17,
-      marginLeft: 15,
-      opacity: 0.7,
-      padding: 4,
-      fontSize: 12
-    },
-    background: {
-        height: 400,
-        margin: 300,
-        position: 'absolute'
-    },
-    normalBouton: {
-        fontWeight: "bold",
-        fontSize: 15,
-        padding: 5,
-        color: "#0000cd",
-        borderColor: "#20b2aa",
-        borderRadius: 10,
-        borderWidth: 0.7,
-        backgroundColor: "#66cdaa",
-        opacity: 0.68,
-        textShadowColor: "#black", textShadowOffset: { width: -2, height: 2 },
-        textShadowRadius: 10,
-        marginTop: 2
-    },
-    normalText: {
-        fontSize: 15,
-        fontWeight: "bold",
-        marginLeft: 15,
-        color: "#800080"
-    }
+    borderWidth: 2,
+    width: 300,
+    borderColor: "#00ced1",
+    borderRadius: 17,
+    marginLeft: 15,
+    opacity: 0.7,
+    padding: 4,
+    fontSize: 12,
+  },
+  background: {
+    height: 400,
+    margin: 300,
+    position: "absolute",
+  },
+  normalBouton: {
+    fontWeight: "bold",
+    fontSize: 15,
+    padding: 5,
+    color: "#0000cd",
+    borderColor: "#20b2aa",
+    borderRadius: 10,
+    borderWidth: 0.7,
+    backgroundColor: "#66cdaa",
+    opacity: 0.68,
+    textShadowColor: "#black",
+    textShadowOffset: { width: -2, height: 2 },
+    textShadowRadius: 10,
+    marginTop: 2,
+  },
+  normalText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginLeft: 15,
+    color: "#800080",
+  },
+  searchInput: {
+    height: 40,
+    borderWidth: 2,
+    width: 300,
+    borderColor: "#00ced1",
+    borderRadius: 17,
+    marginLeft: 15,
+    opacity: 0.7,
+    padding: 4,
+    fontSize: 12,
+  }
 });
