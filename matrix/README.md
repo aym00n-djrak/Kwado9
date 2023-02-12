@@ -27,6 +27,10 @@ Les modèles azure sont disponibles dans le répertoire [modeles-azure](https://
 
 Les exemples de fichiers de configuration pour le serveur sont disponibles dans le répertoire [src](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/src)
 
+## Schéma de l'infrastructure
+
+![infra](./docs/images/infra-drawio-v2)
+
 ## Liens utiles
 - [Synapse Guide](https://matrix.org/docs/guides)
 - [Matrix Guide](https://matrix-org.github.io/synapse/latest/welcome_and_overview.html)
