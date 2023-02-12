@@ -21,7 +21,7 @@ const MessageInput = ({ onSend }) => {
   return (
     <View>
       <TextInput
-        placeholder="Enter a message..."
+        placeholder="Enter a message...!"
         onChangeText={text => setText(text)}
         value={text}
         style={{color : 'black', backgroundColor: 'white', padding: 10, margin: 10, borderRadius: 10, width: 200, alignSelf: 'flex-start', alignSelf: 'center'}}

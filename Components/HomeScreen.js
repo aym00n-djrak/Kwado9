@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { StyleSheet, View, Text, Button, Image } from "react-native";
 import skull from "../assets/skull.png";
 import Messagerie from "./Messagerie";
@@ -10,16 +10,37 @@ import Firebase from "./Firebase";
 import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
 import { useRoute } from "@react-navigation/native";
+import { signOut } from "firebase/auth";
 
 import Matrix from "./Matrix";
+import RoomMatrix from "./RoomMatrix";
+import App from "../App";
+import * as sdk from "matrix-js-sdk";
+
 
 //sources: https://products.ls.graphics/mesh-gradients/
-//j'ai enlevé: <Text style={styles.generateButton2} onPress={() => {navigation.navigate("Firebase", { user });console.log(user);}}>Firebase</Text>
+//j'ai enlevï¿½: <Text style={styles.generateButton2} onPress={() => {navigation.navigate("Firebase", { user });console.log(user);}}>Firebase</Text>
 export default function HomeScreen({ navigation }) {
 
   const route = useRoute();
   const user = route.params?.user;
+  const utilisateur = route.params?.utilisateur;
+  const auth = route.params?.auth;
+  const [login, setLogin] = useState(route.params?.login);
   
+  console.log(auth);
+  console.log(login);
+ 
+  const handleSignOut = () => {
+    signOut(auth)
+      .then((userCredential) => {
+        console.log("Signed out");
+        setLogin(0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
 
           <View style={styles.container}>
@@ -45,7 +66,11 @@ export default function HomeScreen({ navigation }) {
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("IAtext")}>IAtext</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("SMS")}>SMS</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("Matrix")}>Matrix</Text>
-              </View>
+          </View>
+
+          <Button title="Sign out" onPress={handleSignOut} />
+
+
       </View>
 
 
@@ -107,7 +132,15 @@ export function SMSScreenScreen({ navigation }) {
 
 
 export function MatrixScreen({ navigation }) {
-  return <Matrix />;
+  return <Matrix navigation={navigation} />;
+}
+
+export function RoomMatrixScreen({ navigation }) {
+  return <RoomMatrix />;
+}
+
+export function AppScreen({ navigation }) {
+  return <App />;
 }
 
 const styles = StyleSheet.create({

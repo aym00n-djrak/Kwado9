@@ -28,7 +28,7 @@ export default function Home() {
   );
 
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);

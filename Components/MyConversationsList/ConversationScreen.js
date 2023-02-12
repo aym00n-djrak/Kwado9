@@ -8,7 +8,7 @@ import {
   } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-//inspiré de: https://reactnavigation.org/docs/tab-based-navigation/
+//inspirï¿½ de: https://reactnavigation.org/docs/tab-based-navigation/
 // et de : https://ionic.io/ionicons/
 const styles = StyleSheet.create({
     container: {
@@ -100,7 +100,6 @@ function ConversationsList({ navigation}) {
                     </View>
 
                 </View>
-
             ))}
             </View>
         </View>

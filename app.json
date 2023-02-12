@@ -25,10 +25,16 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "jsEngine": "hermes"
+      "jsEngine": "hermes",
+      "package": "com.aym00n.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c8fcb2b6-c511-483e-9279-03ba6e12c5c3"
+      }
     }
   }
 }
