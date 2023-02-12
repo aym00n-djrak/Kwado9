@@ -165,7 +165,7 @@ Votre serveur est maintenant opérationnel !
 ansible-playbook -i inventory/hosts setup.yml --extra-vars='username=user password=password admin=no' --tags=register-user
 ```
 
-2. Connectez vous à votre serveur Matrix depuis votre client Element (en utilisant les identifiants créés au point 16) à l'adresse suivante : https://element.example.fr/
+2. Connectez vous à votre serveur Matrix depuis votre client Element (en utilisant les identifiants créés au point 1) à l'adresse suivante : https://element.example.fr/
 
 
 3. Mettez en place chaque pont :
