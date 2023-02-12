@@ -1,4 +1,4 @@
-# Configuration des outils nécessaire sur Windows
+# Configuration des outils nécessaires sur Windows
 
 Afin de rendre la configuration la plus simple et la plus sécurisée possible, nous avons choisi d'utiliser Docker et Ansible pour la configuration de notre serveur. 
 
@@ -6,22 +6,22 @@ Ansible permet d'installer et de configurer automatiquement les différents serv
 
 Malheureusement, Ansible ne fonctionne pas nativement sur Windows. C'est pourquoi nous allons utiliser Docker Desktop à travers WSL (Windows Subsystem for Linux) pour pouvoir utiliser Ansible sur Windows. 
 
-WSL nous permettra aussi d'utiliser les outils linux nécessaires à la configuration de notre serveur comme Git, pwgen, etc.
+WSL nous permettra aussi d'utiliser les outils Linux nécessaires à la configuration de notre serveur comme Git, pwgen, etc.
 
 ## Installation de WSL et Docker Desktop
 
-1. Ouvrez le menu démarrer et tapez "Activer ou désactiver des fonctionnalités windows" puis cliquez sur le résultat correspondant
+1. Ouvrez le menu démarrer et tapez "Activer ou désactiver des fonctionnalités Windows" puis cliquez sur le résultat correspondant
 ![activer ou désactiver des fonctionnalités windows](./images/activer-desactiver.png)
 
 2. Cochez les cases suivantes :
-  - Platefome de machine virtuelle
+  - Plateforme de machine virtuelle
   - Sous-système Windows pour Linux
 
 ![fonctionnalités windows](./images/fonctionalites.png)
 
 Cliquez sur OK pour valider, puis redémarrez votre ordinateur.
 
-3. Sur le microsoft store :
+3. Sur le Microsoft store :
   - Installez [WSL](https://www.microsoft.com/store/productId/9P9TQF7MRM4R)
   - Installez [Ubuntu](https://www.microsoft.com/store/productId/9PN20MSR04DW)
 
