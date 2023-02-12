@@ -171,19 +171,19 @@ ansible-playbook -i inventory/hosts setup.yml --extra-vars='username=user passwo
 3. Mettez en place chaque pont :
     ![CleanShot 2023-01-26 at 23 08 40](https://user-images.githubusercontent.com/1048265/215031550-61f92954-6936-42af-bb4b-a8165e17389e.gif)
 
-    1. Cliquer sur le bouton `+` en haut à gauche et tappez @whatsappbot:exemple.fr
+    1. Cliquer sur le bouton `+` en haut à gauche et tapez @whatsappbot:exemple.fr
     2. Cliquez sur le bot dans les suggestions proposées
     3. Cliquez sur la conversation `whatsappbot` dans la liste des conversations
     4. Envoyez le message `login` au bot
     5. Scannez le QR code avec votre téléphone
     6. Répétez les étapes 1 à 5 pour chaque pont que vous souhaitez mettre en place
-    les commandes à envoyer au bot peuvent changer mais sont toujours indiquées dans la documentation du pont accessible en envoyant le message `help` au bot
+    les commandes à envoyer au bot peuvent changer, mais sont toujours indiquées dans la documentation du pont accessible en envoyant le message `help` au bot
 
 Vous pouvez maintenant utiliser les ponts que vous avez mis en place pour communiquer avec vos contacts depuis Matrix !
 
-Plusieurs Clients Matrix sont disponibles sur PC comme sur Téléphone, vous pouvez en trouver une liste ici : https://matrix.org/clients/
+Plusieurs Clients Matrix sont disponibles sur PC comme sur téléphone, vous pouvez en trouver une liste ici : https://matrix.org/clients/
 
-(Connectez vous aux clients en utilisant l'adresse https://matrix.example.fr et les identifiants créés au point 1)
+(Connectez-vous aux clients en utilisant l'adresse https://matrix.example.fr et les identifiants créés au point 1)
 
 ## Sources
 
