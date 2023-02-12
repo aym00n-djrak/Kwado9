@@ -48,8 +48,12 @@ Pour créez un utilisateur entrez dans le terminal:
 
 ```bash
  sudo docker exec -it synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml
- ```
- 
- Puis connectez vous sur le client Element en cliquant sur modifier, puis dans autre server d'acceuil entrez l'adresse suivante
- http://localhost:8008/
- Entrez ensuite les informations de l'utilisateur créé précedament et cliquer sur se connecter
+```
+
+Puis connectez vous sur le client Element en cliquant sur modifier, puis dans autre server d'acceuil entrez l'adresse suivante
+http://localhost:8008/
+Entrez ensuite les informations de l'utilisateur créé précedament et cliquez sur se connecter
+
+## Auteur
+
+Enzo GALLOS

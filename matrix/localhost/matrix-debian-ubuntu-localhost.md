@@ -117,3 +117,6 @@ sudo apt install element-desktop -y
 
 Cliquez sur "Se connecter" pour vous connecter à un serveur Matrix. Si vous utilisez le serveur Matrix de Synapse, cliquez sur "Modifier" à côté de "matrix.org", sélectionnez "Autre serveur" et saisissez l'URL http://localhost:8008. Connectez-vous en utilisant les informations d'identification Synapse que vous avez créées plus tôt.
 
+## Auteur
+
+Enzo GALLOS
