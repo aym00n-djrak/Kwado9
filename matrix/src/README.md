@@ -1,4 +1,4 @@
-# Fichiers Templates
+# Fichiers de configuration
 
 Voici deux fichiers d'exemple pour les fichiers de configuration d'Ansible.
 Veillez à ne pas réutiliser les mêmes IP, nom de domaine, email et mots de passe que ceux utilisés dans ces fichiers.
