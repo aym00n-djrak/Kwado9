@@ -23,7 +23,7 @@ Les instructions pour l'installation complète du serveur sont disponibles dans 
 
 Vous pouvez également consulter les instructions pour une installation locale du serveur pour tester l'application sans frais. Il y a cependant de nombreuses limitations à cette installation. Pour plus de détails, voir l'onglet [localhost](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/localhost)
 
-Les modèles azure sont disponibles dans le répertoire [modeles-azure](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/modeles-azure)
+Les modèles Azure sont disponibles dans le répertoire [modeles-azure](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/modeles-azure)
 
 Les exemples de fichiers de configuration pour le serveur sont disponibles dans le répertoire [src](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/src)
 
