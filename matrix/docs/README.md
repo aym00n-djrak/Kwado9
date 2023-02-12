@@ -1,6 +1,6 @@
 # Matrix
 
-Cette documentation explique comment configurer de A à Z votre serveur matrix pour notre projet.
+Cette documentation explique comment configurer de A à Z votre serveur Matrix pour notre projet.
 
 Pour rendre ce tutoriel plus accessible, il a été réalisé sur Windows 11.
 
@@ -13,7 +13,7 @@ Avant de commencer à configurer votre serveur, il est important de savoir que v
 
 - [Créer et configurer son VPS sur Azure](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/vps-azure.md)
 - [Commander votre nom de domaine et configurer votre DNS](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/domaine-et-dns-ionos.md)
-- [Configurer et installer les outils nécessaire sur Windows](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/outils-windows-et-ssh.md)
+- [Configurer et installer les outils nécessaires sur Windows](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/outils-windows-et-ssh.md)
 
 ## Configuration et installation du serveur
 
@@ -25,7 +25,7 @@ Avant de commencer à configurer votre serveur, il est important de savoir que v
 git clone https://github.com/spantaleev/matrix-docker-ansible-deploy
 ```
 
-3. Déplacez vous dans le dossier `matrix-docker-ansible-deploy` en tapant la commande suivante :
+3. Déplacez-vous dans le dossier `matrix-docker-ansible-deploy` en tapant la commande suivante :
 
 ```bash
 cd matrix-docker-ansible-deploy
@@ -47,13 +47,13 @@ mkdir inventory/host_vars/matrix.example.fr
 cd inventory/host_vars/matrix.example.fr
 ```
 
-6. Copier le fichier template `vars.yml`dans votre dossier actuel en tapant la commande suivante :
+6. Copier le fichier template `vars.yml` dans votre dossier actuel en tapant la commande suivante :
 
 ```bash
 cp ../../../examples/vars.yml ./
 ```
 
-7. Editez le fichier `vars.yml` en tapant la commande suivante :
+7. Éditez le fichier `vars.yml` en tapant la commande suivante :
 
 ```bash
 code vars.yml
@@ -65,7 +65,7 @@ Si vous souhaitez customiser votre serveur, vous pouvez partir de ce fichier pou
 
 Si vous souhaitez reprendre notre configuration, vous pouvez remplacer le contenu du fichier `vars.yml` par celui-ci:
 
-https://github.com/aym00n-djrak/Kwado9/blob/main/matrix/vars.yml
+https://github.com/aym00n-djrak/Kwado9/blob/main/matrix/src/exemple-vars.yml
 
 Cependant, il est important de noter que dans les deux cas vous devez remplacer les valeurs suivantes par les vôtres :
 
@@ -96,7 +96,7 @@ cd ../..
 cp ../examples/hosts ./
 ```
 
-10. Editez le fichier `hosts` en tapant la commande suivante :
+10. Éditez le fichier `hosts` en tapant la commande suivante :
 
 ```bash
 code hosts
@@ -110,9 +110,9 @@ Vous devez compléter la dernière ligne de ce fichier de la manière suivante :
 matrix.example.fr ansible_host=1.2.3.4 ansible_ssh_user=user become=true become_user=root
 ```
 
-become=true et become_user=root sont nécessaires pour éléver les privilèges de votre utilisateur afin qu'il puisse installer les paquets nécessaires sur votre serveur (en tant que root).
+become=true et become_user=root sont nécessaires pour élever les privilèges de votre utilisateur afin qu'il puisse installer les paquets nécessaires sur votre serveur (en tant que root).
 
-11. sauvegardez ce fichier, puis déplacez vous dans le dossier `matrix-docker-ansible-deploy` en tapant la commande suivante :
+11. Sauvegardez ce fichier, puis déplacez vous dans le dossier `matrix-docker-ansible-deploy` en tapant la commande suivante :
 
 ```bash
 cd ..
@@ -143,15 +143,15 @@ root@f3b0c5b5b0a5:/work#
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ```
 
-Cette commande va installer et configurer votre serveur. Cela peut prendre un certain temps. Après une quizaine de minutes, le terminal doit afficher de nouveau /work# avec un message de succès. Il faudra encore attendre quelques minutes pour que le serveur soit disponible et que les certificats SSL soient générés.
+Cette commande va installer et configurer votre serveur. Cela peut prendre un certain temps. Après une quinzaine de minutes, le terminal doit afficher de nouveau /work# avec un message de succès. Il faudra encore attendre quelques minutes pour que le serveur soit disponible et que les certificats SSL soient générés.
 
 14. Vérifiez que votre serveur est bien en ligne en y accédant depuis votre navigateur en tapant les adresses suivantes :
 
-https://example.fr pour accéder à la page d'acceuil du serveur nginx
+https://example.fr pour accéder à la page d'accueil du serveur Nginx
 
-https://matrix.example.fr pour accéder à la page d'acceuil de votre serveur Matrix
+https://matrix.example.fr pour accéder à la page d'accueil de votre serveur Matrix
 
-https://element.example.fr pour accéder à la page d'acceuil de votre client web Element
+https://element.example.fr pour accéder à la page d'accueil de votre client web Element
 
 Votre serveur est maintenant opérationnel !
 
