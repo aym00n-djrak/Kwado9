@@ -1,0 +1,86 @@
+---
+# Le nom de domaine nu qui représente votre identité Matrix.
+# Les identifiants d'utilisateur Matrix pour votre serveur seront de la forme (@utilisateur:<matrix-domain>).
+#
+# Remarque: ce playbook ne touche pas au serveur référencé ici.
+# L'installation se produit sur un autre serveur ("matrix.<matrix-domain>").
+#
+# Si vous avez déployé avec le mauvais domaine, vous devrez exécuter l'étape de désinstallation,
+# car vous ne pouvez pas changer le domaine après le déploiement.
+#
+# Valeur d'exemple: example.fr
+matrix_domain: exemple.fr
+
+# Le logiciel de serveur Matrix à installer.
+# Voir:
+# - roles/custom/matrix-base/defaults/main.yml pour les options valides
+# - la page de documentation docs/configuring-playbook-IMPLEMENTATION_NAME.md, s'il en existe une pour votre choix d'implémentation
+matrix_homeserver_implementation: synapse
+
+# Un mot de passe utilisé comme base, pour générer divers autres mots de passe.
+# Vous pouvez mettre n'importe quel mot de passe ici, mais il est préférable de générer un mot de passe fort (par exemple, pwgen -s 64 1).
+matrix_homeserver_generic_secret_key: 'Z9bM6VHMoXFlxnAKgU6JO4fe4zep6BYLSq6Vvj1EbAGagvoYI2feAnZ6uhX65VES'
+
+# C'est quelque chose qui est fourni à Let's Encrypt lors de la récupération des certificats SSL pour les domaines.
+#
+# Au cas où le renouvellement SSL échouerait à un moment donné, vous recevrez une notification par email.
+#
+# Si vous décidez d'utiliser une autre méthode pour gérer les certificats SSL (différente de la méthode par défaut Let's Encrypt),
+# vous n'aurez pas à définir cette variable (voir docs/configuring-playbook-ssl-certificates.md).
+#
+# Valeur d'exemple: : user@gmail.com
+matrix_ssl_lets_encrypt_support_email: 'user@gmail.com'
+
+# Un mot de passe Postgres à utiliser pour l'utilisateur superutilisateur Postgres (appelé matrix par défaut).
+#
+# Le playbook crée des utilisateurs et des bases de données Postgres supplémentaires (une pour chaque service activé)
+# en utilisant ce compte superutilisateur.
+devture_postgres_connection_password: 'BsbUrxnh6t2BlDhM1a3ptBDXHdtgbCgW0IljJWlmuMdWM4Ycnj4HdcP7S0qzejYZ'
+
+matrix_synapse_ext_password_provider_shared_secret_auth_enabled: true
+# Le mot de passe partagé qui sera utilisé pour l'authentification: Remplacer par votre propre mot de passe partagé
+matrix_synapse_ext_password_provider_shared_secret_auth_shared_secret: 'WB1Eh6EllGg5vjvOdP16zgM7GL63QmsjA17E7W3VW1as9AlaFB6LvymYLYx9Hmz2'
+
+# Commentez les ponts que vous n'allez pas utiliser pour économiser de la RAM
+# Activation du pont pour Discord
+matrix_mautrix_discord_enabled: true
+
+# Activation du pont pour WhatsApp
+matrix_mautrix_whatsapp_enabled: true
+matrix_synapse_configuration_extension_yaml: |
+  experimental_features:
+    msc2716_enabled: true
+matrix_mautrix_whatsapp_configuration_extension_yaml:
+  bridge:
+    history_sync:
+      backfill: true
+
+# Activation du pont pour Facebook Messenger
+matrix_mautrix_facebook_enabled: true
+
+# Activation du pont pour Instagram
+matrix_mautrix_instagram_enabled: true
+
+# Activation du pont pour Twitter
+matrix_mautrix_twitter_enabled: true
+
+# Activation du pont pour Signal
+matrix_mautrix_signal_enabled: true
+
+# Activation du serveur proxy Nginx pour le domaine de base
+matrix_nginx_proxy_base_domain_serving_enabled: true
+
+# Activation de Prometheus pour le monitoring des performances
+matrix_prometheus_enabled: true
+prometheus_node_exporter_enabled: true
+prometheus_postgres_exporter_enabled: true
+matrix_prometheus_nginxlog_exporter_enabled: true
+
+# Activation de Grafana pour la visualisation des données de performance
+matrix_grafana_enabled: true
+matrix_grafana_anonymous_access: false
+# Nom d'utilisateur par défaut pour l'administrateur de Grafana. Peut être n'importe quel nom d'utilisateur souhaité.
+# Changer le nom d'utilisateur par la suite ne fonctionnera pas .
+matrix_grafana_default_admin_user: "user"
+# Changer le mot de passe par la suite ne fonctionnera pas.
+matrix_grafana_default_admin_password: "SeDH666Pft1rWng"

@@ -11,9 +11,9 @@ Avant de commencer à configurer votre serveur, il est important de savoir que v
 
 ## Prérequis
 
-- [Créer et configurer son VPS sur Azure](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/azure.md)
-- [Commander votre nom de domaine et configurer votre DNS](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/ionos.md)
-- [Configurer et installer les outils nécessaire sur Windows](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/windows.md)
+- [Créer et configurer son VPS sur Azure](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/vps-azure.md)
+- [Commander votre nom de domaine et configurer votre DNS](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/domaine-et-dns-ionos.md)
+- [Configurer et installer les outils nécessaire sur Windows](https://github.com/aym00n-djrak/Kwado9/tree/main/matrix/docs/outils-windows-et-ssh.md)
 
 ## Configuration et installation du serveur
 

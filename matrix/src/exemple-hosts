@@ -1,0 +1,19 @@
+# Nous demandons explicitement l'adresse IP externe de votre serveur, car la même valeur est utilisée pour configurer Coturn.
+# Si vous préférez utiliser une IP locale ici, assurez-vous de définir `matrix_coturn_turn_external_ip_address`.
+#
+# Pour se connecter en utilisant un utilisateur non-root (et élever ensuite en root avec sudo),
+# remplacez `ansible_ssh_user=root` par quelque chose comme ceci: `ansible_ssh_user=nom_d'utilisateur become=true become_user=root`
+#
+# Pour améliorer les performances d'Ansible, le pipeline SSH est activé par défaut dans `ansible.cfg`.
+# Si cela cause des problèmes de connexion SSH, désactivez-le en ajoutant `ansible_ssh_pipelining=False`
+# à la ligne d'hôte ci-dessous ou en ajoutant `ansible_ssh_pipelining: False` à votre fichier de variables.
+#
+# Si vous exécutez ce playbook Ansible sur le même serveur que celui que vous installez,
+# considérez l'ajout d'un argument supplémentaire `ansible_connection=local` à la ligne d'hôte ci-dessous.
+#
+# Ansible peut échouer à découvrir quel interpréteur Python utiliser sur l'hôte pour certaines distributions (comme Ubuntu 20.04).
+# Vous devrez parfois ajouter explicitement l'argument `ansible_python_interpreter=/usr/bin/python3`
+# à la ligne d'hôte ci-dessous.
+
+[matrix_servers]
+matrix.kwado9.fr ansible_host=1.2.3.4 ansible_ssh_user=user become=true become_user=root

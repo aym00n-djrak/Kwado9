@@ -1,0 +1,84 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_serveur_matrix_name": {
+            "defaultValue": "serveur-matrix",
+            "type": "String"
+        },
+        "disks_serveur_matrix_OsDisk_1_5214aaa7011848d6bc12698e6186486d_externalid": {
+            "defaultValue": "/subscriptions/534e2f1f-7a76-48ee-a554-cf35382b4777/resourceGroups/Matrix/providers/Microsoft.Compute/disks/serveur-matrix_OsDisk_1_5214aaa7011848d6bc12698e6186486d",
+            "type": "String"
+        },
+        "networkInterfaces_serveur_matrix961_externalid": {
+            "defaultValue": "/subscriptions/534e2f1f-7a76-48ee-a554-cf35382b4777/resourceGroups/Matrix/providers/Microsoft.Network/networkInterfaces/serveur-matrix961",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2022-08-01",
+            "name": "[parameters('virtualMachines_serveur_matrix_name')]",
+            "location": "francecentral",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "canonical",
+                        "offer": "0001-com-ubuntu-server-jammy",
+                        "sku": "22_04-lts-gen2",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_serveur_matrix_name'), '_OsDisk_1_5214aaa7011848d6bc12698e6186486d')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_serveur_matrix_OsDisk_1_5214aaa7011848d6bc12698e6186486d_externalid')]"
+                        },
+                        "deleteOption": "Detach",
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_serveur_matrix_name')]",
+                    "adminUsername": "enzo",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true,
+                        "patchSettings": {
+                            "patchMode": "ImageDefault",
+                            "assessmentMode": "ImageDefault"
+                        },
+                        "enableVMAgentPlatformUpdates": false
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_serveur_matrix961_externalid')]",
+                            "properties": {
+                                "deleteOption": "Delete"
+                            }
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true
+                    }
+                }
+            }
+        }
+    ]
+}

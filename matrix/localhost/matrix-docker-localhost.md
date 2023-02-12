@@ -2,7 +2,7 @@
 
 ## Prérequis
 
-### Pour Windows
+### Sur Windows 11
 
 WSL:
 1. Activer ou désactiver des fonctionnalités windows
@@ -14,11 +14,9 @@ WSL:
 3. Sur le microsoft store :
   - Installez [WSL](https://www.microsoft.com/store/productId/9P9TQF7MRM4R)
   - Installez [Ubuntu](https://www.microsoft.com/store/productId/9PN20MSR04DW)
-  - (optionnel) Installez [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us) (Windows 10)
 
 Docker Destop:
 - Installez [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- (optionnel) Créez un compte sur DockerHub pour pouvoir publier ses propre images
 - Dans Docker Destop, dans paramètres > ressources > WSL Integration > Enable integration with additional distros > activez Ubuntu > Cliquez sur Apply and restart
 
 ## Installation

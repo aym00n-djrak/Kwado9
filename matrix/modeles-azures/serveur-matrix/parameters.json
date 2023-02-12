@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_serveur_matrix_name": {
+            "value": null
+        },
+        "disks_serveur_matrix_OsDisk_1_5214aaa7011848d6bc12698e6186486d_externalid": {
+            "value": null
+        },
+        "networkInterfaces_serveur_matrix961_externalid": {
+            "value": null
+        }
+    }
+}
