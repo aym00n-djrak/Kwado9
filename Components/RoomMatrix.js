@@ -10,11 +10,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useState, useEffect } from "react";
+import userStore from "../Store";
 
 export default function RoomMatrix({ navigation }) {
   const route = useRoute();
   const room = route.params?.room;
-  const utilisateur = route.params?.utilisateur;
+  const utilisateur = userStore.utilisateur;
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(room.timeline);
@@ -39,47 +40,50 @@ export default function RoomMatrix({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-            <Text style={styles.name}>{room.name}</Text>
+        <Text style={styles.name}>{room.name}</Text>
 
-            <ScrollView name="messages" style={styles.userInfo}>
-              <Text style={styles.userInfo}>Messages: </Text>
-              {messages.map((message, index) => {
-                return (
-                  <View key={index} style={styles.item}>
-                    <Text key={index} style={styles.balloon}>
-                      {message.event.sender}: {message.event.content.body}
-                    </Text>
-                  </View>
-                );
-              })}
-            </ScrollView>
+        <ScrollView name="messages" style={styles.userInfo}>
+  <Text style={styles.userInfo}>Messages: </Text>
+  {messages.map((message, index) => {
+    return (
+      <View key={index} style={styles.item}>
+        <Text>{message.event.sender}: {message.event.content.body}</Text>
+        {console.log(message.event.content.msgtype)}
+        {message.event.content.msgtype === "m.image" &&
+          <Image
+            style={styles.image}
+            source={{uri: message.event.content.url}}
+            component={TouchableOpacity}
+          />
+        }
+      </View>
+    );
+  })}
+</ScrollView>
 
 
-            <View style={styles.footer}>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.inputs}
-                  placeholder="Write a message..."
-                  underlineColorAndroid="transparent"
-                  onChangeText={(msg) => setMessage(msg)}
-                />
-              </View>
-              <TouchableOpacity
-                style={styles.btnSend}
-                onPress={() =>
-                  sendMess(message, room.roomId) && updateMessages()
-                }
-              >
-                <Image
-                  source={{
-                    uri: "https://img.icons8.com/small/75/ffffff/filled-sent.png",
-                  }}
-                  style={styles.iconSend}
-                />
-              </TouchableOpacity>
-            </View>
+        <View style={styles.footer}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.inputs}
+              placeholder="Write a message..."
+              underlineColorAndroid="transparent"
+              onChangeText={(msg) => setMessage(msg)}
+            />
           </View>
-   
+          <TouchableOpacity
+            style={styles.btnSend}
+            onPress={() => sendMess(message, room.roomId) && updateMessages()}
+          >
+            <Image
+              source={{
+                uri: "https://img.icons8.com/small/75/ffffff/filled-sent.png",
+              }}
+              style={styles.iconSend}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
     </>
   );
 }
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#00BFFF",
-
   },
   list: {
     paddingHorizontal: 17,

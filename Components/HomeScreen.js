@@ -11,12 +11,12 @@ import IAtext from "./IAtext";
 import SMSScreen from "./SMS";
 import { useRoute } from "@react-navigation/native";
 import { signOut } from "firebase/auth";
-
+import LoginMatrix from "./LoginMatrix";
 import Matrix from "./Matrix";
 import RoomMatrix from "./RoomMatrix";
 import App from "../App";
 import * as sdk from "matrix-js-sdk";
-
+import userStore from "../Store";
 
 //sources: https://products.ls.graphics/mesh-gradients/
 //j'ai enlev�: <Text style={styles.generateButton2} onPress={() => {navigation.navigate("Firebase", { user });console.log(user);}}>Firebase</Text>
@@ -24,23 +24,15 @@ export default function HomeScreen({ navigation }) {
 
   const route = useRoute();
   const user = route.params?.user;
-  const utilisateur = route.params?.utilisateur;
   const auth = route.params?.auth;
   const [login, setLogin] = useState(route.params?.login);
   
-  console.log(auth);
-  console.log(login);
- 
-  const handleSignOut = () => {
-    signOut(auth)
-      .then((userCredential) => {
-        console.log("Signed out");
-        setLogin(0);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  console.log("User: "+user?.email);
+ console.log("token: "+userStore.token);
+  console.log(userStore);
+  
+  console.log(user);
+
   return (
 
           <View style={styles.container}>
@@ -67,10 +59,6 @@ export default function HomeScreen({ navigation }) {
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("SMS")}>SMS</Text>
               <Text style={styles.generateButton2} onPress={() => navigation.navigate("Matrix")}>Matrix</Text>
           </View>
-
-          <Button title="Sign out" onPress={handleSignOut} />
-
-
       </View>
 
 
@@ -141,6 +129,10 @@ export function RoomMatrixScreen({ navigation }) {
 
 export function AppScreen({ navigation }) {
   return <App />;
+}
+
+export function LoginMatrixScreen({ navigation }) {
+  return <LoginMatrix />;
 }
 
 const styles = StyleSheet.create({

@@ -26,19 +26,17 @@ import "react-native-url-polyfill/auto";
 //sources: https://products.ls.graphics/mesh-gradients/
 
 import * as sdk from "matrix-js-sdk";
+import { observer } from "mobx-react";
+import userStore from "./Store";
 
 export default function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("remyj@outlook.fr");
+  const [password, setPassword] = useState("remy9999");
   const app = initializeApp(firebaseConfig);
 
   const [user, setUser] = useState("");
 
   const [login, setLogin] = useState(0);
-
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   const auth = getAuth();
 
@@ -87,24 +85,38 @@ export default function App() {
   const username = "remy2";
   const pass = ".[&3^AHWz(,u";
 */
-
-  const [baseUrl, setBaseUrl] = useState("https://matrix.kwado9.fr");
-  const [username, setUsername] = useState("remy2");
-  const [pass, setPass] = useState(".[&3^AHWz(,u");
-  const [user_id, setUser_id] = useState("@remy2:kwado9.fr");
+  /*
+  const [baseUrl, setBaseUrl] = useState("https://matrix.org");
+  const [username, setUsername] = useState("remyjova");
+  const [pass, setPass] = useState("remy9999.");
+  const [user_id, setUser_id] = useState(
+    "@" + username + ":" + baseUrl.split("//")[1]
+  );
 
   const [Token, setToken] = useState("");
   const [rooms, setRooms] = useState([]);
 
-  useEffect(() => {
-    getToken();
-  }, [login]);
 
   const utilisateur = sdk.createClient({
     baseUrl: baseUrl,
     accessToken: Token,
     userId: user_id,
   });
+*/
+
+const baseUrl= userStore.baseUrl;
+  const username = userStore.username;
+  const pass = userStore.pass;
+  const user_id = userStore.user_id;
+  const Token = userStore.Token;
+  
+const utilisateur = userStore.utilisateur;
+
+
+  useEffect(() => {
+    getToken();
+  }, [login]);
+
 
   const getToken = async () => {
     if (login === 1) {
@@ -125,7 +137,7 @@ export default function App() {
         password: pass,
       });
       const accessToken = response.access_token;
-      setToken(accessToken);
+      userStore.setToken(accessToken);
       console.log("Login successful, access token:", accessToken);
 
       return accessToken;
@@ -191,22 +203,22 @@ export default function App() {
             <View style={styles.buttonBackground}>
               <TextInput
                 value={baseUrl}
-                onChangeText={(baseUrl) => setBaseUrl(baseUrl)}
+                onChangeText={(baseUrl) => userStore.setBaseUrl(baseUrl)}
                 style={styles.input}
               />
               <TextInput
                 value={username}
-                onChangeText={(username) => setUsername(username)}
+                onChangeText={(username) => userStore.setUsername(username)}
                 style={styles.input}
               />
               <TextInput
                 value={pass}
-                onChangeText={(pass) => setPass(pass)}
+                onChangeText={(pass) => userStore.setPass(pass)}
                 style={styles.input}
               />
               <TextInput
                 value={user_id}
-                onChangeText={(user_id) => setUser_id(user_id)}
+                onChangeText={(user_id) => userStore.setUser_id(user_id)}
                 style={styles.input}
               />
             </View>

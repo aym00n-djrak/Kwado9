@@ -10,15 +10,21 @@ import { TouchableOpacity } from "react-native";
 import { TextAnimationSlideDown } from "react-native-text-effects";
 import { ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import userStore from "../Store";
+import RoomMatrix from "./RoomMatrix";
+
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 const RoomButton = ({ roomName, onPress }) => (
   <Button title={roomName} onPress={onPress} />
 );
 
-export default function Matrix({ navigation }) {
-  const route = useRoute();
-  const utilisateur = route.params?.utilisateur;
+export function Matrix({ navigation }) {
+  const utilisateur = userStore.utilisateur;
 
+  console.log("Matrix.js : utilisateur = ", utilisateur.getAccessToken());
   const [roomname, setRoomname] = React.useState([]);
   const [roomalias, setRoomalias] = React.useState("");
   const [message, setMessage] = React.useState("Hello World");
@@ -39,16 +45,12 @@ export default function Matrix({ navigation }) {
     };
   }, []);
 
-  async function getRoomId() {
-    const roomAlias = "#room_alias:matrix.org";
-
-    try {
-      const roomId = await utilisateur.getRoomIdForAlias(roomAlias);
-      return roomId;
-    } catch (error) {
-      console.error(`Error getting room ID for alias ${roomAlias}: ${error}`);
-      return null;
-    }
+  async function getRoomId(roomAlias) {
+    return utilisateur.resolveRoomAlias(roomAlias).then(function(response) {
+      return response.room_id;
+    }).catch(function(error) {
+      console.error(`Error resolving alias ${roomAlias}: ${error}`);
+    });
   }
 
   async function sendMess(message, roomname) {
@@ -104,9 +106,21 @@ export default function Matrix({ navigation }) {
       });
   }
 
-  function joinRoom(roomname) {
+   function joinRoom(roomAlias) {
+    var roomId = getRoomId(roomAlias);
     utilisateur
-      .joinRoom(roomname)
+      .joinRoom(roomId)
+      .then(function (room) {
+        console.log(`Joined room ${room.roomId}`);
+      })
+      .catch(function (err) {
+        console.error(`Error joining room ${err}`);
+      });
+  }
+
+  function joinAlias(alias) {
+    utilisateur
+      .joinRoom(alias)
       .then(function (room) {
         console.log(`Joined room ${room.roomId}`);
       })
@@ -247,9 +261,37 @@ export default function Matrix({ navigation }) {
               );
             })}
         </ScrollView>
+        <View style={styles.bouton}>
+          <TextInput
+            style={styles.input}
+            placeholder="Salle à rejoindre"
+            onChangeText={(text) => setRoomname(text)}
+            value={roomname}
+          />
+          <TouchableOpacity onPress={() => joinRoom(roomname)}>
+            <Text style={styles.normalBouton}>Rejoindre</Text>
+          </TouchableOpacity>
+          
+        </View>
+        <TouchableOpacity onPress={() => getRoomId("@remjova:matrix.org")}>
+            <Text style={styles.normalBouton}>Rejoindre</Text>
+          </TouchableOpacity>
       </View>
     </>
   );
+}
+
+export default function HomeMatrix() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HomeMatrix" component={HomeMatrixScreen} />
+      <Stack.Screen name="RoomMatrix" component={RoomMatrix} />
+    </Stack.Navigator>
+  );
+}
+
+export function HomeMatrixScreen({ navigation }) {
+  return <Matrix navigation={navigation} />;
 }
 
 const styles = StyleSheet.create({
@@ -309,5 +351,5 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     padding: 4,
     fontSize: 12,
-  }
+  },
 });
