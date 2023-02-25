@@ -16,6 +16,7 @@ import Matrix from "./Matrix";
 import RoomMatrix from "./RoomMatrix";
 import App from "../App";
 import * as sdk from "matrix-js-sdk";
+import { Linking } from 'react-native';
 
 
 //sources: https://products.ls.graphics/mesh-gradients/
@@ -70,6 +71,10 @@ export default function HomeScreen({ navigation }) {
 
           <Button title="Sign out" onPress={handleSignOut} />
 
+          <Text style={{ color: '#191970', fontSize: 20 }}
+              onPress={() => Linking.openURL('https://testpubkwado9albert.blogspot.com/')}>
+                Click to see Advertisement!
+          </Text>
 
       </View>
 
