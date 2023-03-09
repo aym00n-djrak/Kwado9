@@ -29,7 +29,7 @@ Les exemples de fichiers de configuration pour le serveur sont disponibles dans 
 
 ## Schéma de l'infrastructure
 
-![infra](./docs/images/infra.drawio.png)
+![infra](./docs/images/infra.drawio2.png)
 
 ## Liens utiles
 - [Synapse Guide](https://matrix.org/docs/guides)
