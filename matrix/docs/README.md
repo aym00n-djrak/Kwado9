@@ -161,6 +161,8 @@ https://matrix.example.fr pour accéder à la page d'accueil de votre serveur Ma
 
 https://element.example.fr pour accéder à la page d'accueil de votre client web Element
 
+https://chat.example.fr pour accéder au client cinny (remplaçant Element si vous avez utilisé notre fichier exemple-vars.yml)
+
 Votre serveur est maintenant opérationnel !
 
 ## Utilisation
