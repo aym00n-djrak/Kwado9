@@ -137,13 +137,21 @@ Une fois dans le conteneur Docker, votre terminal doit ressembler à ceci :
 root@f3b0c5b5b0a5:/work#
 ```
 
-13. Lancer le playbook Ansible en tapant la commande suivante :
+13. Lancer le playbook Ansible en tapant une à une les commandes suivantes :
+
+```bash
+git config --global --add safe.directory /work
+```
+
+```bash
+make roles
+```
 
 ```bash
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ```
 
-Cette commande va installer et configurer votre serveur. Cela peut prendre un certain temps. Après une quinzaine de minutes, le terminal doit afficher de nouveau /work# avec un message de succès. Il faudra encore attendre quelques minutes pour que le serveur soit disponible et que les certificats SSL soient générés.
+Ses commandes vont installer et configurer votre serveur. Cela peut prendre un certain temps. Après une quinzaine de minutes, le terminal doit afficher de nouveau /work# avec un message de succès. Il faudra encore attendre quelques minutes pour que le serveur soit disponible et que les certificats SSL soient générés.
 
 14. Vérifiez que votre serveur est bien en ligne en y accédant depuis votre navigateur en tapant les adresses suivantes :
 
