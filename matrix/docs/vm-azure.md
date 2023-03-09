@@ -1,4 +1,4 @@
-# VPS Azure
+# VM Azure
 
 Nous avons choisit Azure comme serveur distant car il est facile d'accès et permet de réaliser notre serveur gratuitement pendant la période de test.
 
@@ -11,7 +11,7 @@ Si vous souhaitez utiliser notre projet sur le long terme, je vous conseille viv
 
 Puis connectez vous à votre [portail Azure](https://portal.azure.com/)
 
-## Créez votre VPS
+## Créez votre VM
 
 Dans le portail, créez une ressource en appuyant sur [créer une ressource](https://portal.azure.com/#create/hub) :
 
@@ -47,7 +47,7 @@ Une fois le serveur créé, vous accédez normalement à la vue d'ensemble du se
 
 Vous pouvez accéder à cette page à tout moment à partir du portail Azure en cliquant sur le nom du serveur dans la section ressources.
 
-## Connexion au VPS et vérification de la configuration
+## Connexion à la VM et vérification de la configuration
 
 Nous allons maintenant nous connecter au serveur Azure via SSH, vérifier que python3 est installé et vérifier l'accès aux droits root :
 
