@@ -29,6 +29,8 @@ Vous pouvez ensuite suivre les captures d'écran si-dessous pour configurer votr
 
 ![de base top](./images/de-base-top.png)
 
+Nous avons choisi ici un serveur avec plus de RAM que nécessaire pour accueillir un grand nombre d'utilisateurs. Un serveur avec 2GB de RAM bien optimisé suffit pour un usage personnel. 
+
 ![de base bottom](./images/de-base-bottom.png)
 
 ![disques](./images/disques.png)
