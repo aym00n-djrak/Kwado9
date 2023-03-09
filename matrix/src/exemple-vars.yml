@@ -21,7 +21,25 @@ matrix_homeserver_implementation: synapse
 # Vous pouvez mettre n'importe quel mot de passe ici, mais il est préférable de générer un mot de passe fort (par exemple, pwgen -s 64 1).
 matrix_homeserver_generic_secret_key: 'Z9bM6VHMoXFlxnAKgU6JO4fe4zep6BYLSq6Vvj1EbAGagvoYI2feAnZ6uhX65VES'
 
-# C'est quelque chose qui est fourni à Let's Encrypt lors de la récupération des certificats SSL pour les domaines.
+# Permettre la création d'un utilisateur avec vérification captcha
+matrix_synapse_enable_registration: true
+
+matrix_synapse_enable_registration_captcha: true
+
+matrix_synapse_recaptcha_public_key: '6LeogcckAAAAAKmpxalb_hbAGagvoYI2feAnZ6u5'
+
+matrix_synapse_recaptcha_private_key: '6LeogcckAAAAAME-O3yh8oX_nAKgU6JO4fe4zep6'
+
+# Désactiver le client Element disponible par défaut
+matrix_client_element_enabled: false
+
+# Intaller le client cinny à l'adresse chat.exemple.fr
+matrix_client_cinny_enabled: true
+
+matrix_server_fqn_cinny: "chat.{{ matrix_domain }}"
+
+matrix_synapse_admin_enabled: true
+# C'est quelque chose qui est fourni à traefik lors de la récupération des certificats SSL pour les domaines.
 #
 # Au cas où le renouvellement SSL échouerait à un moment donné, vous recevrez une notification par email.
 #
@@ -29,7 +47,9 @@ matrix_homeserver_generic_secret_key: 'Z9bM6VHMoXFlxnAKgU6JO4fe4zep6BYLSq6Vvj1Eb
 # vous n'aurez pas à définir cette variable (voir docs/configuring-playbook-ssl-certificates.md).
 #
 # Valeur d'exemple: : user@gmail.com
-matrix_ssl_lets_encrypt_support_email: 'user@gmail.com'
+matrix_playbook_reverse_proxy_type: playbook-managed-traefik
+
+devture_traefik_config_certificatesResolvers_acme_email: user@gmail.com
 
 # Un mot de passe Postgres à utiliser pour l'utilisateur superutilisateur Postgres (appelé matrix par défaut).
 #
@@ -57,16 +77,43 @@ matrix_mautrix_whatsapp_configuration_extension_yaml:
 
 # Activation du pont pour Facebook Messenger
 matrix_mautrix_facebook_enabled: true
+matrix_mautrix_facebook_configuration_extension_yaml: |
+  bridge:
+    encryption:
+      allow: true
+      default: true
 
 # Activation du pont pour Instagram
 matrix_mautrix_instagram_enabled: true
-
-# Activation du pont pour Twitter
-matrix_mautrix_twitter_enabled: true
+matrix_mautrix_instagram_configuration_extension_yaml: |
+  bridge:
+    encryption:
+      allow: true
+      default: true
 
 # Activation du pont pour Signal
 matrix_mautrix_signal_enabled: true
 
+# Activation du pont pour Telegram
+# Vous devez tout dabord obtenir votre API keys depuis : https://my.telegram.org/apps and then enter the details below
+# matrix_mautrix_telegram_enabled: true
+# matrix_mautrix_telegram_api_id: YOUR_TELEGRAM_APP_ID
+# matrix_mautrix_telegram_api_hash: YOUR_TELEGRAM_API_HASH
+
+# Activation du pont pour Twitter
+matrix_mautrix_twitter_enabled: true
+
+# Activation du pont pour Slack
+matrix_mautrix_slack_enabled: true
+
+# Activation du pont pour Linkedin
+matrix_beeper_linkedin_enabled: true
+matrix_beeper_linkedin_configuration_extension_yaml: |
+  bridge:
+    encryption:
+      allow: true
+      default: true
+      
 # Activation du serveur proxy Nginx pour le domaine de base
 matrix_nginx_proxy_base_domain_serving_enabled: true
 
@@ -77,10 +124,10 @@ prometheus_postgres_exporter_enabled: true
 matrix_prometheus_nginxlog_exporter_enabled: true
 
 # Activation de Grafana pour la visualisation des données de performance
-matrix_grafana_enabled: true
-matrix_grafana_anonymous_access: false
+grafana_enabled: true
+grafana_anonymous_access: false
 # Nom d'utilisateur par défaut pour l'administrateur de Grafana. Peut être n'importe quel nom d'utilisateur souhaité.
 # Changer le nom d'utilisateur par la suite ne fonctionnera pas .
-matrix_grafana_default_admin_user: "user"
+grafana_default_admin_user: "user"
 # Changer le mot de passe par la suite ne fonctionnera pas.
-matrix_grafana_default_admin_password: "SeDH666Pft1rWng"
+grafana_default_admin_password: "SeDH666Pft1rWng"
